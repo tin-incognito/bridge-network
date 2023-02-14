@@ -1,0 +1,7 @@
+syntax = "proto3";
+package bridge.bridge;
+
+option go_package = "bridge/x/bridge/types";
+
+// Msg defines the Msg service.
+service Msg {}
