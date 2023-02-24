@@ -45304,6 +45304,8 @@ paths:
       tags:
         - Query
 definitions:
+  bridge.bridge.MsgKeygenResponse:
+    type: object
   bridge.bridge.Params:
     type: object
     description: Params defines the parameters for the module.

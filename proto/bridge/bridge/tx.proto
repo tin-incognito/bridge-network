@@ -1,7 +1,18 @@
 syntax = "proto3";
+
 package bridge.bridge;
 
 option go_package = "bridge/x/bridge/types";
 
 // Msg defines the Msg service.
-service Msg {}
+service Msg {
+  rpc Keygen (MsgKeygen) returns (MsgKeygenResponse);
+}
+message MsgKeygen {
+  string creator = 1;
+  int32  t       = 2;
+  string data    = 3;
+}
+
+message MsgKeygenResponse {}
+
