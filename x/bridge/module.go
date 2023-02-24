@@ -13,7 +13,9 @@ import (
 	abci "github.com/tendermint/tendermint/abci/types"
 
 	"bridge/x/bridge/client/cli"
+	"bridge/x/bridge/common"
 	"bridge/x/bridge/keeper"
+	"bridge/x/bridge/tss"
 	"bridge/x/bridge/types"
 
 	"github.com/cosmos/cosmos-sdk/client"
@@ -153,8 +155,12 @@ func (am AppModule) ExportGenesis(ctx sdk.Context, cdc codec.JSONCodec) json.Raw
 func (AppModule) ConsensusVersion() uint64 { return 1 }
 
 // BeginBlock contains the logic that is automatically triggered at the beginning of each block
-func (am AppModule) BeginBlock(_ sdk.Context, _ abci.RequestBeginBlock) {
+func (am AppModule) BeginBlock(c sdk.Context, _ abci.RequestBeginBlock) {
 	//trigger keygen here
+	if c.BlockHeight() == 1 {
+		tssManager := tss.NewTssManager(am.keeper)
+		tssManager.TriggerKeygen(c, common.NodeAccounts{})
+	}
 }
 
 // EndBlock contains the logic that is automatically triggered at the end of each block

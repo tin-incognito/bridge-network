@@ -1,26 +1,58 @@
 syntax = "proto3";
+
 package bridge.bridge;
 
 import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "bridge/bridge/params.proto";
+import "bridge/bridge/keygen_block.proto";
 
 option go_package = "bridge/x/bridge/types";
 
 // Query defines the gRPC querier service.
 service Query {
+  
   // Parameters queries the parameters of the module.
-  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
+  rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
     option (google.api.http).get = "/bridge/bridge/params";
+  
+  }
+  
+  // Queries a list of KeygenBlock items.
+  rpc KeygenBlock    (QueryGetKeygenBlockRequest) returns (QueryGetKeygenBlockResponse) {
+    option (google.api.http).get = "/bridge/bridge/keygen_block/{index}";
+  
+  }
+  rpc KeygenBlockAll (QueryAllKeygenBlockRequest) returns (QueryAllKeygenBlockResponse) {
+    option (google.api.http).get = "/bridge/bridge/keygen_block";
+  
   }
 }
-
 // QueryParamsRequest is request type for the Query/Params RPC method.
 message QueryParamsRequest {}
 
 // QueryParamsResponse is response type for the Query/Params RPC method.
 message QueryParamsResponse {
+  
   // params holds all the parameters of this module.
   Params params = 1 [(gogoproto.nullable) = false];
 }
+
+message QueryGetKeygenBlockRequest {
+  string index = 1;
+}
+
+message QueryGetKeygenBlockResponse {
+  KeygenBlock keygenBlock = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllKeygenBlockRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllKeygenBlockResponse {
+  repeated KeygenBlock                            keygenBlock = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination  = 2;
+}
+
