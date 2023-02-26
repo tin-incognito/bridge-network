@@ -22,6 +22,15 @@ func TestGenesis(t *testing.T) {
 				Index: "1",
 			},
 		},
+		NodeAccountList: []types.NodeAccount{
+			{
+				Id: 0,
+			},
+			{
+				Id: 1,
+			},
+		},
+		NodeAccountCount: 2,
 		// this line is used by starport scaffolding # genesis/test/state
 	}
 
@@ -34,5 +43,7 @@ func TestGenesis(t *testing.T) {
 	nullify.Fill(got)
 
 	require.ElementsMatch(t, genesisState.KeygenBlockList, got.KeygenBlockList)
+	require.ElementsMatch(t, genesisState.NodeAccountList, got.NodeAccountList)
+	require.Equal(t, genesisState.NodeAccountCount, got.NodeAccountCount)
 	// this line is used by starport scaffolding # genesis/test/assert
 }

@@ -23,10 +23,13 @@ var _ = math.Inf
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
 type NodeAccount struct {
-	Address          []byte     `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty"`
-	Status           int32      `protobuf:"varint,2,opt,name=status,proto3" json:"status,omitempty"`
-	PubKeySet        *PubKeySet `protobuf:"bytes,3,opt,name=pub_key_set,json=pubKeySet,proto3" json:"pub_key_set,omitempty"`
-	SignerMembership []string   `protobuf:"bytes,4,rep,name=signer_membership,json=signerMembership,proto3" json:"signer_membership,omitempty"`
+	Id                  uint64     `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	NodeAddress         []byte     `protobuf:"bytes,2,opt,name=node_address,json=nodeAddress,proto3" json:"node_address,omitempty"`
+	IpAddress           string     `protobuf:"bytes,3,opt,name=ip_address,json=ipAddress,proto3" json:"ip_address,omitempty"`
+	Status              int32      `protobuf:"varint,4,opt,name=status,proto3" json:"status,omitempty"`
+	PubKeySet           *PubKeySet `protobuf:"bytes,5,opt,name=pub_key_set,json=pubKeySet,proto3" json:"pub_key_set,omitempty"`
+	ValidatorConsPubKey string     `protobuf:"bytes,6,opt,name=validator_cons_pub_key,json=validatorConsPubKey,proto3" json:"validator_cons_pub_key,omitempty"`
+	SignerMembership    []string   `protobuf:"bytes,7,rep,name=signer_membership,json=signerMembership,proto3" json:"signer_membership,omitempty"`
 }
 
 func (m *NodeAccount) Reset()         { *m = NodeAccount{} }
@@ -62,11 +65,25 @@ func (m *NodeAccount) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_NodeAccount proto.InternalMessageInfo
 
-func (m *NodeAccount) GetAddress() []byte {
+func (m *NodeAccount) GetId() uint64 {
 	if m != nil {
-		return m.Address
+		return m.Id
+	}
+	return 0
+}
+
+func (m *NodeAccount) GetNodeAddress() []byte {
+	if m != nil {
+		return m.NodeAddress
 	}
 	return nil
+}
+
+func (m *NodeAccount) GetIpAddress() string {
+	if m != nil {
+		return m.IpAddress
+	}
+	return ""
 }
 
 func (m *NodeAccount) GetStatus() int32 {
@@ -83,6 +100,13 @@ func (m *NodeAccount) GetPubKeySet() *PubKeySet {
 	return nil
 }
 
+func (m *NodeAccount) GetValidatorConsPubKey() string {
+	if m != nil {
+		return m.ValidatorConsPubKey
+	}
+	return ""
+}
+
 func (m *NodeAccount) GetSignerMembership() []string {
 	if m != nil {
 		return m.SignerMembership
@@ -97,22 +121,26 @@ func init() {
 func init() { proto.RegisterFile("bridge/bridge/node_account.proto", fileDescriptor_3fbd26d9c8820977) }
 
 var fileDescriptor_3fbd26d9c8820977 = []byte{
-	// 237 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x52, 0x48, 0x2a, 0xca, 0x4c,
-	0x49, 0x4f, 0xd5, 0x87, 0x52, 0x79, 0xf9, 0x29, 0xa9, 0xf1, 0x89, 0xc9, 0xc9, 0xf9, 0xa5, 0x79,
-	0x25, 0x7a, 0x05, 0x45, 0xf9, 0x25, 0xf9, 0x42, 0xbc, 0x10, 0x29, 0x3d, 0x08, 0x25, 0x25, 0x8f,
-	0xaa, 0xa1, 0xa0, 0x34, 0x29, 0x3e, 0x3b, 0xb5, 0x32, 0xbe, 0x38, 0x15, 0xaa, 0x5e, 0x69, 0x19,
-	0x23, 0x17, 0xb7, 0x5f, 0x7e, 0x4a, 0xaa, 0x23, 0xc4, 0x14, 0x21, 0x09, 0x2e, 0xf6, 0xc4, 0x94,
-	0x94, 0xa2, 0xd4, 0xe2, 0x62, 0x09, 0x46, 0x05, 0x46, 0x0d, 0x9e, 0x20, 0x18, 0x57, 0x48, 0x8c,
-	0x8b, 0xad, 0xb8, 0x24, 0xb1, 0xa4, 0xb4, 0x58, 0x82, 0x49, 0x81, 0x51, 0x83, 0x35, 0x08, 0xca,
-	0x13, 0xb2, 0xe0, 0xe2, 0x46, 0x32, 0x56, 0x82, 0x59, 0x81, 0x51, 0x83, 0xdb, 0x48, 0x42, 0x0f,
-	0xc5, 0x1d, 0x7a, 0x01, 0xa5, 0x49, 0xde, 0xa9, 0x95, 0xc1, 0xa9, 0x25, 0x41, 0x9c, 0x05, 0x30,
-	0xa6, 0x90, 0x36, 0x97, 0x60, 0x71, 0x66, 0x7a, 0x5e, 0x6a, 0x51, 0x7c, 0x6e, 0x6a, 0x6e, 0x52,
-	0x6a, 0x51, 0x71, 0x46, 0x66, 0x81, 0x04, 0x8b, 0x02, 0xb3, 0x06, 0x67, 0x90, 0x00, 0x44, 0xc2,
-	0x17, 0x2e, 0xee, 0xa4, 0x7f, 0xe2, 0x91, 0x1c, 0xe3, 0x85, 0x47, 0x72, 0x8c, 0x0f, 0x1e, 0xc9,
-	0x31, 0x4e, 0x78, 0x2c, 0xc7, 0x70, 0xe1, 0xb1, 0x1c, 0xc3, 0x8d, 0xc7, 0x72, 0x0c, 0x51, 0xa2,
-	0x50, 0xcf, 0x55, 0xc0, 0x7c, 0x59, 0x52, 0x59, 0x90, 0x5a, 0x9c, 0xc4, 0x06, 0xf6, 0xa0, 0x31,
-	0x20, 0x00, 0x00, 0xff, 0xff, 0x7e, 0xb2, 0xdc, 0x70, 0x34, 0x01, 0x00, 0x00,
+	// 304 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x54, 0x90, 0xcf, 0x4a, 0x03, 0x31,
+	0x10, 0xc6, 0x9b, 0xed, 0x1f, 0xd9, 0x6c, 0x15, 0x8d, 0x58, 0x82, 0xe0, 0x1a, 0x3d, 0x2d, 0x08,
+	0x5b, 0xb0, 0x17, 0xaf, 0xd5, 0xa3, 0x28, 0xb2, 0xde, 0xbc, 0x84, 0xdd, 0x66, 0xa8, 0x41, 0xbb,
+	0x09, 0x49, 0x56, 0xec, 0x5b, 0x08, 0xbe, 0x94, 0xc7, 0x1e, 0x3d, 0x4a, 0xfb, 0x22, 0x62, 0xb3,
+	0x5d, 0xec, 0x69, 0x92, 0xef, 0x37, 0xf3, 0xcd, 0xf0, 0x61, 0x56, 0x18, 0x29, 0xa6, 0x30, 0xac,
+	0x4b, 0xa9, 0x04, 0xf0, 0x7c, 0x32, 0x51, 0x55, 0xe9, 0x52, 0x6d, 0x94, 0x53, 0x64, 0xd7, 0xa3,
+	0xd4, 0x97, 0xe3, 0xd3, 0xed, 0x01, 0x5d, 0x15, 0xfc, 0x05, 0xe6, 0xdc, 0x42, 0xdd, 0x7f, 0xfe,
+	0x19, 0xe0, 0xe8, 0x5e, 0x09, 0x18, 0x7b, 0x17, 0xb2, 0x87, 0x03, 0x29, 0x28, 0x62, 0x28, 0xe9,
+	0x64, 0x81, 0x14, 0xe4, 0x0c, 0xf7, 0xfd, 0x16, 0x21, 0x0c, 0x58, 0x4b, 0x03, 0x86, 0x92, 0x7e,
+	0x16, 0xfd, 0x69, 0x63, 0x2f, 0x91, 0x13, 0x8c, 0xa5, 0x6e, 0x1a, 0xda, 0x0c, 0x25, 0x61, 0x16,
+	0x4a, 0xbd, 0xc1, 0x03, 0xdc, 0xb3, 0x2e, 0x77, 0x95, 0xa5, 0x1d, 0x86, 0x92, 0x6e, 0x56, 0xff,
+	0xc8, 0x15, 0x8e, 0xfe, 0x9d, 0x43, 0xbb, 0x0c, 0x25, 0xd1, 0x25, 0x4d, 0xb7, 0xee, 0x4f, 0x1f,
+	0xaa, 0xe2, 0x16, 0xe6, 0x8f, 0xe0, 0xb2, 0x50, 0x6f, 0x9e, 0x64, 0x84, 0x07, 0x6f, 0xf9, 0xab,
+	0x14, 0xb9, 0x53, 0x86, 0x4f, 0x54, 0x69, 0x79, 0x6d, 0x44, 0x7b, 0xeb, 0xe5, 0x87, 0x0d, 0xbd,
+	0x51, 0xa5, 0xf5, 0x16, 0xe4, 0x02, 0x1f, 0x58, 0x39, 0x2d, 0xc1, 0xf0, 0x19, 0xcc, 0x0a, 0x30,
+	0xf6, 0x59, 0x6a, 0xba, 0xc3, 0xda, 0x49, 0x98, 0xed, 0x7b, 0x70, 0xd7, 0xe8, 0xd7, 0xc3, 0xaf,
+	0x65, 0x8c, 0x16, 0xcb, 0x18, 0xfd, 0x2c, 0x63, 0xf4, 0xb1, 0x8a, 0x5b, 0x8b, 0x55, 0xdc, 0xfa,
+	0x5e, 0xc5, 0xad, 0xa7, 0xa3, 0x3a, 0xc9, 0xf7, 0x4d, 0xa4, 0x6e, 0xae, 0xc1, 0x16, 0xbd, 0x75,
+	0x9a, 0xa3, 0xdf, 0x00, 0x00, 0x00, 0xff, 0xff, 0x91, 0x1a, 0x4b, 0xca, 0xa1, 0x01, 0x00, 0x00,
 }
 
 func (m *NodeAccount) Marshal() (dAtA []byte, err error) {
@@ -141,8 +169,15 @@ func (m *NodeAccount) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 			copy(dAtA[i:], m.SignerMembership[iNdEx])
 			i = encodeVarintNodeAccount(dAtA, i, uint64(len(m.SignerMembership[iNdEx])))
 			i--
-			dAtA[i] = 0x22
+			dAtA[i] = 0x3a
 		}
+	}
+	if len(m.ValidatorConsPubKey) > 0 {
+		i -= len(m.ValidatorConsPubKey)
+		copy(dAtA[i:], m.ValidatorConsPubKey)
+		i = encodeVarintNodeAccount(dAtA, i, uint64(len(m.ValidatorConsPubKey)))
+		i--
+		dAtA[i] = 0x32
 	}
 	if m.PubKeySet != nil {
 		{
@@ -154,19 +189,31 @@ func (m *NodeAccount) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 			i = encodeVarintNodeAccount(dAtA, i, uint64(size))
 		}
 		i--
-		dAtA[i] = 0x1a
+		dAtA[i] = 0x2a
 	}
 	if m.Status != 0 {
 		i = encodeVarintNodeAccount(dAtA, i, uint64(m.Status))
 		i--
-		dAtA[i] = 0x10
+		dAtA[i] = 0x20
 	}
-	if len(m.Address) > 0 {
-		i -= len(m.Address)
-		copy(dAtA[i:], m.Address)
-		i = encodeVarintNodeAccount(dAtA, i, uint64(len(m.Address)))
+	if len(m.IpAddress) > 0 {
+		i -= len(m.IpAddress)
+		copy(dAtA[i:], m.IpAddress)
+		i = encodeVarintNodeAccount(dAtA, i, uint64(len(m.IpAddress)))
 		i--
-		dAtA[i] = 0xa
+		dAtA[i] = 0x1a
+	}
+	if len(m.NodeAddress) > 0 {
+		i -= len(m.NodeAddress)
+		copy(dAtA[i:], m.NodeAddress)
+		i = encodeVarintNodeAccount(dAtA, i, uint64(len(m.NodeAddress)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if m.Id != 0 {
+		i = encodeVarintNodeAccount(dAtA, i, uint64(m.Id))
+		i--
+		dAtA[i] = 0x8
 	}
 	return len(dAtA) - i, nil
 }
@@ -188,7 +235,14 @@ func (m *NodeAccount) Size() (n int) {
 	}
 	var l int
 	_ = l
-	l = len(m.Address)
+	if m.Id != 0 {
+		n += 1 + sovNodeAccount(uint64(m.Id))
+	}
+	l = len(m.NodeAddress)
+	if l > 0 {
+		n += 1 + l + sovNodeAccount(uint64(l))
+	}
+	l = len(m.IpAddress)
 	if l > 0 {
 		n += 1 + l + sovNodeAccount(uint64(l))
 	}
@@ -197,6 +251,10 @@ func (m *NodeAccount) Size() (n int) {
 	}
 	if m.PubKeySet != nil {
 		l = m.PubKeySet.Size()
+		n += 1 + l + sovNodeAccount(uint64(l))
+	}
+	l = len(m.ValidatorConsPubKey)
+	if l > 0 {
 		n += 1 + l + sovNodeAccount(uint64(l))
 	}
 	if len(m.SignerMembership) > 0 {
@@ -244,8 +302,27 @@ func (m *NodeAccount) Unmarshal(dAtA []byte) error {
 		}
 		switch fieldNum {
 		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+			}
+			m.Id = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowNodeAccount
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Id |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 2:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Address", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field NodeAddress", wireType)
 			}
 			var byteLen int
 			for shift := uint(0); ; shift += 7 {
@@ -272,12 +349,44 @@ func (m *NodeAccount) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Address = append(m.Address[:0], dAtA[iNdEx:postIndex]...)
-			if m.Address == nil {
-				m.Address = []byte{}
+			m.NodeAddress = append(m.NodeAddress[:0], dAtA[iNdEx:postIndex]...)
+			if m.NodeAddress == nil {
+				m.NodeAddress = []byte{}
 			}
 			iNdEx = postIndex
-		case 2:
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field IpAddress", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowNodeAccount
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthNodeAccount
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthNodeAccount
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.IpAddress = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Status", wireType)
 			}
@@ -296,7 +405,7 @@ func (m *NodeAccount) Unmarshal(dAtA []byte) error {
 					break
 				}
 			}
-		case 3:
+		case 5:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field PubKeySet", wireType)
 			}
@@ -332,7 +441,39 @@ func (m *NodeAccount) Unmarshal(dAtA []byte) error {
 				return err
 			}
 			iNdEx = postIndex
-		case 4:
+		case 6:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ValidatorConsPubKey", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowNodeAccount
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthNodeAccount
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthNodeAccount
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.ValidatorConsPubKey = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 7:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field SignerMembership", wireType)
 			}

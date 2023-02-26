@@ -7,6 +7,7 @@ import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "bridge/bridge/params.proto";
 import "bridge/bridge/keygen_block.proto";
+import "bridge/bridge/node_account.proto";
 
 option go_package = "bridge/x/bridge/types";
 
@@ -26,6 +27,16 @@ service Query {
   }
   rpc KeygenBlockAll (QueryAllKeygenBlockRequest) returns (QueryAllKeygenBlockResponse) {
     option (google.api.http).get = "/bridge/bridge/keygen_block";
+  
+  }
+  
+  // Queries a list of NodeAccount items.
+  rpc NodeAccount    (QueryGetNodeAccountRequest) returns (QueryGetNodeAccountResponse) {
+    option (google.api.http).get = "/bridge/bridge/node_account/{id}";
+  
+  }
+  rpc NodeAccountAll (QueryAllNodeAccountRequest) returns (QueryAllNodeAccountResponse) {
+    option (google.api.http).get = "/bridge/bridge/node_account";
   
   }
 }
@@ -53,6 +64,23 @@ message QueryAllKeygenBlockRequest {
 
 message QueryAllKeygenBlockResponse {
   repeated KeygenBlock                            keygenBlock = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination  = 2;
+}
+
+message QueryGetNodeAccountRequest {
+  uint64 id = 1;
+}
+
+message QueryGetNodeAccountResponse {
+  NodeAccount NodeAccount = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllNodeAccountRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllNodeAccountResponse {
+  repeated NodeAccount                            NodeAccount = 1 [(gogoproto.nullable) = false];
            cosmos.base.query.v1beta1.PageResponse pagination  = 2;
 }
 

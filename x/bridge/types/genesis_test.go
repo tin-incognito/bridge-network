@@ -30,6 +30,15 @@ func TestGenesisState_Validate(t *testing.T) {
 						Index: "1",
 					},
 				},
+				NodeAccountList: []types.NodeAccount{
+					{
+						Id: 0,
+					},
+					{
+						Id: 1,
+					},
+				},
+				NodeAccountCount: 2,
 				// this line is used by starport scaffolding # types/genesis/validField
 			},
 			valid: true,
@@ -45,6 +54,32 @@ func TestGenesisState_Validate(t *testing.T) {
 						Index: "0",
 					},
 				},
+			},
+			valid: false,
+		},
+		{
+			desc: "duplicated nodeAccount",
+			genState: &types.GenesisState{
+				NodeAccountList: []types.NodeAccount{
+					{
+						Id: 0,
+					},
+					{
+						Id: 0,
+					},
+				},
+			},
+			valid: false,
+		},
+		{
+			desc: "invalid nodeAccount count",
+			genState: &types.GenesisState{
+				NodeAccountList: []types.NodeAccount{
+					{
+						Id: 1,
+					},
+				},
+				NodeAccountCount: 0,
 			},
 			valid: false,
 		},

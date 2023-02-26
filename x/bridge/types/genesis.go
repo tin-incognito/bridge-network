@@ -11,6 +11,7 @@ const DefaultIndex uint64 = 1
 func DefaultGenesis() *GenesisState {
 	return &GenesisState{
 		KeygenBlockList: []KeygenBlock{},
+		NodeAccountList: []NodeAccount{},
 		// this line is used by starport scaffolding # genesis/types/default
 		Params: DefaultParams(),
 	}
@@ -28,6 +29,18 @@ func (gs GenesisState) Validate() error {
 			return fmt.Errorf("duplicated index for keygenBlock")
 		}
 		keygenBlockIndexMap[index] = struct{}{}
+	}
+	// Check for duplicated ID in nodeAccount
+	nodeAccountIdMap := make(map[uint64]bool)
+	nodeAccountCount := gs.GetNodeAccountCount()
+	for _, elem := range gs.NodeAccountList {
+		if _, ok := nodeAccountIdMap[elem.Id]; ok {
+			return fmt.Errorf("duplicated id for nodeAccount")
+		}
+		if elem.Id >= nodeAccountCount {
+			return fmt.Errorf("nodeAccount id should be lower or equal than the last id")
+		}
+		nodeAccountIdMap[elem.Id] = true
 	}
 	// this line is used by starport scaffolding # genesis/types/validate
 
