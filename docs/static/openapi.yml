@@ -218,7 +218,6 @@ paths:
                       format: uint64
                     node_address:
                       type: string
-                      format: byte
                     ip_address:
                       type: string
                     status:
@@ -360,7 +359,6 @@ paths:
                     format: uint64
                   node_address:
                     type: string
-                    format: byte
                   ip_address:
                     type: string
                   status:
@@ -45749,7 +45747,6 @@ definitions:
         format: uint64
       node_address:
         type: string
-        format: byte
       ip_address:
         type: string
       status:
@@ -45844,7 +45841,6 @@ definitions:
               format: uint64
             node_address:
               type: string
-              format: byte
             ip_address:
               type: string
             status:
@@ -45925,7 +45921,6 @@ definitions:
             format: uint64
           node_address:
             type: string
-            format: byte
           ip_address:
             type: string
           status:

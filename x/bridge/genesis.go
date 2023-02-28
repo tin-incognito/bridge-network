@@ -1,7 +1,6 @@
 package bridge
 
 import (
-	"bridge/common/cosmos"
 	"bridge/x/bridge/keeper"
 	"bridge/x/bridge/types"
 
@@ -17,17 +16,15 @@ func InitGenesis(ctx sdk.Context, k keeper.Keeper, genState types.GenesisState) 
 	}
 
 	// Set all the nodeAccount
-	validators := make([]abci.ValidatorUpdate, 0, len(genState.NodeAccountList))
+	validators := []abci.ValidatorUpdate{}
+	//validators := make([]abci.ValidatorUpdate, 0, len(genState.NodeAccountList))
 	for _, nodeAccount := range genState.NodeAccountList {
-		/*if nodeAccount.Status == NodeActive {*/
-		/*// Only Active node will become validator*/
-		pk, err := cosmos.GetPubKeyFromBech32(cosmos.Bech32PubKeyTypeConsPub, nodeAccount.ValidatorConsPubKey)
-		if err != nil {
-			ctx.Logger().Error("fail to parse consensus public key", "key", nodeAccount.ValidatorConsPubKey, "error", err)
-			panic(err)
-		}
-		validators = append(validators, abci.Ed25519ValidatorUpdate(pk.Bytes(), 100))
+		/*pk, err := cosmos.GetPubKeyFromBech32(cosmos.Bech32PubKeyTypeConsPub, nodeAccount.ValidatorConsPubKey)*/
+		/*if err != nil {*/
+		/*ctx.Logger().Error("fail to parse consensus public key", "key", nodeAccount.ValidatorConsPubKey, "error", err)*/
+		/*panic(err)*/
 		/*}*/
+		/*validators = append(validators, abci.Ed25519ValidatorUpdate(pk.Bytes(), 100))*/
 
 		k.SetNodeAccount(ctx, nodeAccount)
 	}

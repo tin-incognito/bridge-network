@@ -106,6 +106,7 @@ import (
 	bridgemodule "bridge/x/bridge"
 	bridgemodulekeeper "bridge/x/bridge/keeper"
 	bridgemoduletypes "bridge/x/bridge/types"
+
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 
 	appparams "bridge/app/params"
@@ -113,7 +114,7 @@ import (
 )
 
 const (
-	AccountAddressPrefix = "cosmos"
+	AccountAddressPrefix = "bridge"
 	Name                 = "bridge"
 )
 
