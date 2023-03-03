@@ -9,12 +9,16 @@ import (
 
 func RegisterCodec(cdc *codec.LegacyAmino) {
 	cdc.RegisterConcrete(&MsgKeygen{}, "bridge/Keygen", nil)
+	cdc.RegisterConcrete(&MsgTssPool{}, "bridge/TssPool", nil)
 	// this line is used by starport scaffolding # 2
 }
 
 func RegisterInterfaces(registry cdctypes.InterfaceRegistry) {
 	registry.RegisterImplementations((*sdk.Msg)(nil),
 		&MsgKeygen{},
+	)
+	registry.RegisterImplementations((*sdk.Msg)(nil),
+		&MsgTssPool{},
 	)
 	// this line is used by starport scaffolding # 3
 

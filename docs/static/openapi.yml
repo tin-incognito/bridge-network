@@ -45703,6 +45703,26 @@ paths:
       tags:
         - Query
 definitions:
+  bridge.bridge.Blame:
+    type: object
+    properties:
+      fail_reason:
+        type: string
+      is_unicast:
+        type: boolean
+      blame_nodes:
+        type: array
+        items:
+          type: object
+          properties:
+            pubkey:
+              type: string
+            blame_data:
+              type: string
+              format: byte
+            blame_signature:
+              type: string
+              format: byte
   bridge.bridge.KeygenBlock:
     type: object
     properties:
@@ -45739,6 +45759,19 @@ definitions:
           type: string
   bridge.bridge.MsgKeygenResponse:
     type: object
+  bridge.bridge.MsgTssPoolResponse:
+    type: object
+  bridge.bridge.Node:
+    type: object
+    properties:
+      pubkey:
+        type: string
+      blame_data:
+        type: string
+        format: byte
+      blame_signature:
+        type: string
+        format: byte
   bridge.bridge.NodeAccount:
     type: object
     properties:

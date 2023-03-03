@@ -28,6 +28,10 @@ const (
 	// TODO: Determine the simulation weight value
 	defaultWeightMsgKeygen int = 100
 
+	opWeightMsgTssPool = "op_weight_msg_tss_pool"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgTssPool int = 100
+
 	// this line is used by starport scaffolding # simapp/module/const
 )
 
@@ -71,6 +75,17 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 	operations = append(operations, simulation.NewWeightedOperation(
 		weightMsgKeygen,
 		bridgesimulation.SimulateMsgKeygen(am.accountKeeper, am.bankKeeper, am.keeper),
+	))
+
+	var weightMsgTssPool int
+	simState.AppParams.GetOrGenerate(simState.Cdc, opWeightMsgTssPool, &weightMsgTssPool, nil,
+		func(_ *rand.Rand) {
+			weightMsgTssPool = defaultWeightMsgTssPool
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgTssPool,
+		bridgesimulation.SimulateMsgTssPool(am.accountKeeper, am.bankKeeper, am.keeper),
 	))
 
 	// this line is used by starport scaffolding # simapp/module/operation
