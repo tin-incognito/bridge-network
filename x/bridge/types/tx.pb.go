@@ -275,43 +275,237 @@ func (m *MsgTssPoolResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_MsgTssPoolResponse proto.InternalMessageInfo
 
+type MsgTssKeySign struct {
+	Creator string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
+}
+
+func (m *MsgTssKeySign) Reset()         { *m = MsgTssKeySign{} }
+func (m *MsgTssKeySign) String() string { return proto.CompactTextString(m) }
+func (*MsgTssKeySign) ProtoMessage()    {}
+func (*MsgTssKeySign) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4f4b439741a43952, []int{4}
+}
+func (m *MsgTssKeySign) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgTssKeySign) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgTssKeySign.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgTssKeySign) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgTssKeySign.Merge(m, src)
+}
+func (m *MsgTssKeySign) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgTssKeySign) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgTssKeySign.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgTssKeySign proto.InternalMessageInfo
+
+func (m *MsgTssKeySign) GetCreator() string {
+	if m != nil {
+		return m.Creator
+	}
+	return ""
+}
+
+type MsgTssKeySignResponse struct {
+}
+
+func (m *MsgTssKeySignResponse) Reset()         { *m = MsgTssKeySignResponse{} }
+func (m *MsgTssKeySignResponse) String() string { return proto.CompactTextString(m) }
+func (*MsgTssKeySignResponse) ProtoMessage()    {}
+func (*MsgTssKeySignResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4f4b439741a43952, []int{5}
+}
+func (m *MsgTssKeySignResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgTssKeySignResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgTssKeySignResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgTssKeySignResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgTssKeySignResponse.Merge(m, src)
+}
+func (m *MsgTssKeySignResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgTssKeySignResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgTssKeySignResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgTssKeySignResponse proto.InternalMessageInfo
+
+type MsgRegisterTssPool struct {
+	Creator    string   `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
+	PoolPubKey string   `protobuf:"bytes,2,opt,name=pool_pub_key,json=poolPubKey,proto3" json:"pool_pub_key,omitempty"`
+	Members    []string `protobuf:"bytes,3,rep,name=members,proto3" json:"members,omitempty"`
+	Signature  string   `protobuf:"bytes,4,opt,name=signature,proto3" json:"signature,omitempty"`
+}
+
+func (m *MsgRegisterTssPool) Reset()         { *m = MsgRegisterTssPool{} }
+func (m *MsgRegisterTssPool) String() string { return proto.CompactTextString(m) }
+func (*MsgRegisterTssPool) ProtoMessage()    {}
+func (*MsgRegisterTssPool) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4f4b439741a43952, []int{6}
+}
+func (m *MsgRegisterTssPool) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgRegisterTssPool) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgRegisterTssPool.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgRegisterTssPool) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgRegisterTssPool.Merge(m, src)
+}
+func (m *MsgRegisterTssPool) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgRegisterTssPool) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgRegisterTssPool.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgRegisterTssPool proto.InternalMessageInfo
+
+func (m *MsgRegisterTssPool) GetCreator() string {
+	if m != nil {
+		return m.Creator
+	}
+	return ""
+}
+
+func (m *MsgRegisterTssPool) GetPoolPubKey() string {
+	if m != nil {
+		return m.PoolPubKey
+	}
+	return ""
+}
+
+func (m *MsgRegisterTssPool) GetMembers() []string {
+	if m != nil {
+		return m.Members
+	}
+	return nil
+}
+
+func (m *MsgRegisterTssPool) GetSignature() string {
+	if m != nil {
+		return m.Signature
+	}
+	return ""
+}
+
+type MsgRegisterTssPoolResponse struct {
+}
+
+func (m *MsgRegisterTssPoolResponse) Reset()         { *m = MsgRegisterTssPoolResponse{} }
+func (m *MsgRegisterTssPoolResponse) String() string { return proto.CompactTextString(m) }
+func (*MsgRegisterTssPoolResponse) ProtoMessage()    {}
+func (*MsgRegisterTssPoolResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4f4b439741a43952, []int{7}
+}
+func (m *MsgRegisterTssPoolResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgRegisterTssPoolResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgRegisterTssPoolResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgRegisterTssPoolResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgRegisterTssPoolResponse.Merge(m, src)
+}
+func (m *MsgRegisterTssPoolResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgRegisterTssPoolResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgRegisterTssPoolResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgRegisterTssPoolResponse proto.InternalMessageInfo
+
 func init() {
 	proto.RegisterType((*MsgKeygen)(nil), "bridge.bridge.MsgKeygen")
 	proto.RegisterType((*MsgKeygenResponse)(nil), "bridge.bridge.MsgKeygenResponse")
 	proto.RegisterType((*MsgTssPool)(nil), "bridge.bridge.MsgTssPool")
 	proto.RegisterType((*MsgTssPoolResponse)(nil), "bridge.bridge.MsgTssPoolResponse")
+	proto.RegisterType((*MsgTssKeySign)(nil), "bridge.bridge.MsgTssKeySign")
+	proto.RegisterType((*MsgTssKeySignResponse)(nil), "bridge.bridge.MsgTssKeySignResponse")
+	proto.RegisterType((*MsgRegisterTssPool)(nil), "bridge.bridge.MsgRegisterTssPool")
+	proto.RegisterType((*MsgRegisterTssPoolResponse)(nil), "bridge.bridge.MsgRegisterTssPoolResponse")
 }
 
 func init() { proto.RegisterFile("bridge/bridge/tx.proto", fileDescriptor_4f4b439741a43952) }
 
 var fileDescriptor_4f4b439741a43952 = []byte{
-	// 401 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0x52, 0xb1, 0x6e, 0xdb, 0x30,
-	0x10, 0x35, 0xa5, 0x58, 0x8e, 0x2e, 0x6e, 0x81, 0xb2, 0x69, 0x40, 0x7b, 0x50, 0x59, 0x4d, 0x42,
-	0x07, 0x05, 0x48, 0xff, 0x20, 0x28, 0x90, 0x21, 0x30, 0x10, 0x08, 0x99, 0xba, 0x18, 0x52, 0x74,
-	0x90, 0x89, 0xd8, 0x22, 0x21, 0x32, 0x40, 0xf4, 0x17, 0x1d, 0xfa, 0x13, 0xfd, 0x93, 0x8e, 0x19,
-	0x3b, 0x16, 0xf6, 0x8f, 0x14, 0xa2, 0x28, 0xb7, 0x69, 0xe1, 0x4c, 0xe4, 0xdd, 0x3d, 0xbe, 0xf7,
-	0xf0, 0x78, 0x70, 0x56, 0x34, 0xa2, 0xac, 0xf0, 0xdc, 0x1d, 0xe6, 0x31, 0x55, 0x8d, 0x34, 0x92,
-	0xbe, 0xea, 0x1b, 0x69, 0x7f, 0xcc, 0x67, 0xcf, 0x61, 0xc5, 0x3a, 0xdf, 0x60, 0x8f, 0x8c, 0xaf,
-	0x20, 0x5c, 0xe8, 0xea, 0x1a, 0xdb, 0x0a, 0x6b, 0xca, 0x60, 0x72, 0xd7, 0x60, 0x6e, 0x64, 0xc3,
-	0x08, 0x27, 0x49, 0x98, 0x0d, 0x25, 0x9d, 0x02, 0x31, 0xcc, 0xe3, 0x24, 0x19, 0x67, 0xc4, 0x50,
-	0x0a, 0x47, 0x65, 0x6e, 0x72, 0xe6, 0x5b, 0x90, 0xbd, 0xc7, 0x6f, 0xe1, 0xcd, 0x9e, 0x28, 0x43,
-	0xad, 0x64, 0xad, 0x31, 0xfe, 0xee, 0x01, 0x2c, 0x74, 0x75, 0xab, 0xf5, 0x8d, 0x94, 0xeb, 0x17,
-	0xf8, 0x5f, 0x83, 0x27, 0x4a, 0x2b, 0x10, 0x66, 0x9e, 0x28, 0x29, 0x87, 0xa9, 0x92, 0x72, 0xbd,
-	0x54, 0x0f, 0xc5, 0xf2, 0x1e, 0x5b, 0xa7, 0x04, 0x5d, 0xef, 0xe6, 0xa1, 0xb8, 0xc6, 0x96, 0xbe,
-	0x87, 0x93, 0x7b, 0x2b, 0xb6, 0x34, 0xad, 0x42, 0x76, 0x64, 0xbd, 0x41, 0xdf, 0xba, 0x6d, 0x15,
-	0xd2, 0x19, 0x1c, 0xbb, 0xd7, 0x9a, 0x8d, 0xb9, 0xdf, 0xa9, 0x29, 0xfb, 0x54, 0xd3, 0x33, 0x08,
-	0x56, 0x28, 0xaa, 0x95, 0x61, 0x01, 0x27, 0x89, 0x9f, 0xb9, 0x8a, 0x7e, 0x84, 0xb1, 0xcd, 0x86,
-	0x4d, 0x38, 0x49, 0x4e, 0x2e, 0x4e, 0xd3, 0x67, 0x31, 0xa6, 0x97, 0xdd, 0x2c, 0xeb, 0x21, 0x1d,
-	0xc7, 0xdd, 0x2a, 0x17, 0xb5, 0x66, 0xc7, 0x96, 0xdc, 0x55, 0x5d, 0x5f, 0x8b, 0xaa, 0xc6, 0x86,
-	0x85, 0x9c, 0x24, 0xd3, 0xcc, 0x55, 0x7f, 0xfb, 0x15, 0x1b, 0x64, 0x60, 0x85, 0x07, 0xbf, 0x62,
-	0x83, 0xf1, 0x29, 0xd0, 0x3f, 0x51, 0x0d, 0x09, 0x5e, 0x7c, 0x23, 0xe0, 0x2f, 0x74, 0x45, 0x3f,
-	0x43, 0x30, 0x7c, 0xd2, 0x3f, 0xae, 0xf6, 0xa9, 0xcf, 0xf9, 0xa1, 0xc9, 0xc0, 0x46, 0xaf, 0x60,
-	0x32, 0xfc, 0xc5, 0xec, 0x7f, 0xb0, 0x1b, 0xcd, 0x3f, 0x1c, 0x1c, 0x0d, 0x44, 0x97, 0xe7, 0x3f,
-	0xb6, 0x11, 0x79, 0xda, 0x46, 0xe4, 0xd7, 0x36, 0x22, 0x5f, 0x77, 0xd1, 0xe8, 0x69, 0x17, 0x8d,
-	0x7e, 0xee, 0xa2, 0xd1, 0x97, 0x77, 0x6e, 0xc9, 0x1e, 0xf7, 0x4b, 0xd9, 0x2a, 0xd4, 0x45, 0x60,
-	0xd7, 0xed, 0xd3, 0xef, 0x00, 0x00, 0x00, 0xff, 0xff, 0x23, 0xee, 0x5b, 0xcf, 0xb2, 0x02, 0x00,
-	0x00,
+	// 505 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x84, 0x54, 0xc1, 0x6e, 0xda, 0x4c,
+	0x10, 0x66, 0x4d, 0x80, 0x78, 0x42, 0xfe, 0x5f, 0xdd, 0x26, 0xe9, 0x62, 0x21, 0xd7, 0xb5, 0x7a,
+	0x70, 0x7a, 0x20, 0x52, 0xfa, 0x06, 0x51, 0xa5, 0x1c, 0x10, 0x12, 0x72, 0x73, 0xea, 0x05, 0xd9,
+	0x61, 0x64, 0x56, 0xc1, 0xd8, 0xf2, 0x2e, 0x52, 0xfc, 0x06, 0x3d, 0xf6, 0x35, 0xfa, 0x24, 0xed,
+	0x31, 0xc7, 0x1e, 0x2b, 0x78, 0x91, 0xca, 0xeb, 0xb5, 0x13, 0x20, 0x21, 0x27, 0x7b, 0x66, 0xbe,
+	0xfd, 0x66, 0xf6, 0xfb, 0x56, 0x03, 0x67, 0x61, 0xc6, 0xa7, 0x11, 0x5e, 0xe8, 0x8f, 0xbc, 0x1f,
+	0xa4, 0x59, 0x22, 0x13, 0x7a, 0x5c, 0x26, 0x06, 0xe5, 0xc7, 0xea, 0x6d, 0xc2, 0xc2, 0x79, 0x10,
+	0x63, 0x89, 0x74, 0xaf, 0xc1, 0x1c, 0x89, 0x68, 0x88, 0x79, 0x84, 0x0b, 0xca, 0xa0, 0x73, 0x9b,
+	0x61, 0x20, 0x93, 0x8c, 0x11, 0x87, 0x78, 0xa6, 0x5f, 0x85, 0xb4, 0x0b, 0x44, 0x32, 0xc3, 0x21,
+	0x5e, 0xcb, 0x27, 0x92, 0x52, 0x38, 0x98, 0x06, 0x32, 0x60, 0x4d, 0x05, 0x52, 0xff, 0xee, 0x5b,
+	0x78, 0x53, 0x13, 0xf9, 0x28, 0xd2, 0x64, 0x21, 0xd0, 0xfd, 0x69, 0x00, 0x8c, 0x44, 0x74, 0x23,
+	0xc4, 0x38, 0x49, 0xe6, 0x7b, 0xf8, 0xff, 0x03, 0x83, 0x4f, 0x55, 0x03, 0xd3, 0x37, 0xf8, 0x94,
+	0x3a, 0xd0, 0x4d, 0x93, 0x64, 0x3e, 0x49, 0x97, 0xe1, 0xe4, 0x0e, 0x73, 0xdd, 0x09, 0x8a, 0xdc,
+	0x78, 0x19, 0x0e, 0x31, 0xa7, 0xef, 0xe1, 0xe8, 0x4e, 0x35, 0x9b, 0xc8, 0x3c, 0x45, 0x76, 0xa0,
+	0x66, 0x83, 0x32, 0x75, 0x93, 0xa7, 0x48, 0x7b, 0x70, 0xa8, 0x4f, 0x0b, 0xd6, 0x72, 0x9a, 0x45,
+	0xb7, 0x54, 0x1d, 0x15, 0xf4, 0x0c, 0xda, 0x33, 0xe4, 0xd1, 0x4c, 0xb2, 0xb6, 0x43, 0xbc, 0xa6,
+	0xaf, 0x23, 0xfa, 0x09, 0x5a, 0x4a, 0x1b, 0xd6, 0x71, 0x88, 0x77, 0x74, 0x79, 0x32, 0xd8, 0x90,
+	0x71, 0x70, 0x55, 0xd4, 0xfc, 0x12, 0x52, 0x70, 0xdc, 0xce, 0x02, 0xbe, 0x10, 0xec, 0x50, 0x91,
+	0xeb, 0xa8, 0xc8, 0x0b, 0x1e, 0x2d, 0x30, 0x63, 0xa6, 0x43, 0xbc, 0xae, 0xaf, 0xa3, 0xa7, 0xf3,
+	0xf2, 0x18, 0x19, 0xa8, 0xc6, 0xd5, 0xbc, 0x3c, 0x46, 0xf7, 0x04, 0xe8, 0xa3, 0x54, 0xb5, 0x82,
+	0xe7, 0x70, 0x5c, 0x66, 0x87, 0x98, 0x7f, 0xe5, 0xd1, 0x1e, 0x8f, 0xdc, 0x77, 0x70, 0xba, 0x01,
+	0xad, 0x39, 0xbe, 0x13, 0x45, 0xed, 0x63, 0xc4, 0x85, 0xc4, 0xec, 0x75, 0x37, 0xb6, 0xd5, 0x37,
+	0x76, 0xd4, 0x67, 0xd0, 0x89, 0x31, 0x0e, 0x31, 0x13, 0xac, 0x59, 0x6a, 0xab, 0x43, 0xda, 0x07,
+	0xb3, 0xb8, 0x71, 0x20, 0x97, 0x59, 0xe9, 0x8a, 0xe9, 0x3f, 0x26, 0xdc, 0x3e, 0x58, 0xbb, 0x93,
+	0x54, 0x83, 0x5e, 0xfe, 0x32, 0xa0, 0x39, 0x12, 0x11, 0xfd, 0x02, 0xed, 0xea, 0x45, 0x6e, 0x59,
+	0x50, 0x3f, 0x31, 0xcb, 0x79, 0xa9, 0x52, 0xb1, 0xd1, 0x6b, 0xe8, 0x54, 0x57, 0xed, 0xed, 0x82,
+	0x75, 0xc9, 0xfa, 0xf0, 0x62, 0xa9, 0x26, 0x1a, 0x03, 0x3c, 0x31, 0xa0, 0xff, 0xec, 0x01, 0x5d,
+	0xb5, 0x3e, 0xee, 0xab, 0xd6, 0x8c, 0x13, 0xf8, 0x7f, 0xdb, 0x8d, 0x67, 0xe6, 0xd8, 0x82, 0x58,
+	0xe7, 0xaf, 0x42, 0xaa, 0x06, 0x57, 0x17, 0xbf, 0x57, 0x36, 0x79, 0x58, 0xd9, 0xe4, 0xef, 0xca,
+	0x26, 0x3f, 0xd6, 0x76, 0xe3, 0x61, 0x6d, 0x37, 0xfe, 0xac, 0xed, 0xc6, 0xb7, 0x53, 0xbd, 0x04,
+	0xee, 0xeb, 0xa5, 0x91, 0xa7, 0x28, 0xc2, 0xb6, 0x5a, 0x07, 0x9f, 0xff, 0x05, 0x00, 0x00, 0xff,
+	0xff, 0xc9, 0x45, 0xa9, 0xda, 0x52, 0x04, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -328,6 +522,8 @@ const _ = grpc.SupportPackageIsVersion4
 type MsgClient interface {
 	Keygen(ctx context.Context, in *MsgKeygen, opts ...grpc.CallOption) (*MsgKeygenResponse, error)
 	TssPool(ctx context.Context, in *MsgTssPool, opts ...grpc.CallOption) (*MsgTssPoolResponse, error)
+	TssKeySign(ctx context.Context, in *MsgTssKeySign, opts ...grpc.CallOption) (*MsgTssKeySignResponse, error)
+	RegisterTssPool(ctx context.Context, in *MsgRegisterTssPool, opts ...grpc.CallOption) (*MsgRegisterTssPoolResponse, error)
 }
 
 type msgClient struct {
@@ -356,10 +552,30 @@ func (c *msgClient) TssPool(ctx context.Context, in *MsgTssPool, opts ...grpc.Ca
 	return out, nil
 }
 
+func (c *msgClient) TssKeySign(ctx context.Context, in *MsgTssKeySign, opts ...grpc.CallOption) (*MsgTssKeySignResponse, error) {
+	out := new(MsgTssKeySignResponse)
+	err := c.cc.Invoke(ctx, "/bridge.bridge.Msg/TssKeySign", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) RegisterTssPool(ctx context.Context, in *MsgRegisterTssPool, opts ...grpc.CallOption) (*MsgRegisterTssPoolResponse, error) {
+	out := new(MsgRegisterTssPoolResponse)
+	err := c.cc.Invoke(ctx, "/bridge.bridge.Msg/RegisterTssPool", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 type MsgServer interface {
 	Keygen(context.Context, *MsgKeygen) (*MsgKeygenResponse, error)
 	TssPool(context.Context, *MsgTssPool) (*MsgTssPoolResponse, error)
+	TssKeySign(context.Context, *MsgTssKeySign) (*MsgTssKeySignResponse, error)
+	RegisterTssPool(context.Context, *MsgRegisterTssPool) (*MsgRegisterTssPoolResponse, error)
 }
 
 // UnimplementedMsgServer can be embedded to have forward compatible implementations.
@@ -371,6 +587,12 @@ func (*UnimplementedMsgServer) Keygen(ctx context.Context, req *MsgKeygen) (*Msg
 }
 func (*UnimplementedMsgServer) TssPool(ctx context.Context, req *MsgTssPool) (*MsgTssPoolResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TssPool not implemented")
+}
+func (*UnimplementedMsgServer) TssKeySign(ctx context.Context, req *MsgTssKeySign) (*MsgTssKeySignResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TssKeySign not implemented")
+}
+func (*UnimplementedMsgServer) RegisterTssPool(ctx context.Context, req *MsgRegisterTssPool) (*MsgRegisterTssPoolResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RegisterTssPool not implemented")
 }
 
 func RegisterMsgServer(s grpc1.Server, srv MsgServer) {
@@ -413,6 +635,42 @@ func _Msg_TssPool_Handler(srv interface{}, ctx context.Context, dec func(interfa
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_TssKeySign_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgTssKeySign)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).TssKeySign(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/bridge.bridge.Msg/TssKeySign",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).TssKeySign(ctx, req.(*MsgTssKeySign))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_RegisterTssPool_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgRegisterTssPool)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).RegisterTssPool(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/bridge.bridge.Msg/RegisterTssPool",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).RegisterTssPool(ctx, req.(*MsgRegisterTssPool))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Msg_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "bridge.bridge.Msg",
 	HandlerType: (*MsgServer)(nil),
@@ -424,6 +682,14 @@ var _Msg_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "TssPool",
 			Handler:    _Msg_TssPool_Handler,
+		},
+		{
+			MethodName: "TssKeySign",
+			Handler:    _Msg_TssKeySign_Handler,
+		},
+		{
+			MethodName: "RegisterTssPool",
+			Handler:    _Msg_RegisterTssPool_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -614,6 +880,135 @@ func (m *MsgTssPoolResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
+func (m *MsgTssKeySign) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgTssKeySign) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgTssKeySign) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Creator) > 0 {
+		i -= len(m.Creator)
+		copy(dAtA[i:], m.Creator)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Creator)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *MsgTssKeySignResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgTssKeySignResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgTssKeySignResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
+func (m *MsgRegisterTssPool) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgRegisterTssPool) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgRegisterTssPool) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Signature) > 0 {
+		i -= len(m.Signature)
+		copy(dAtA[i:], m.Signature)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Signature)))
+		i--
+		dAtA[i] = 0x22
+	}
+	if len(m.Members) > 0 {
+		for iNdEx := len(m.Members) - 1; iNdEx >= 0; iNdEx-- {
+			i -= len(m.Members[iNdEx])
+			copy(dAtA[i:], m.Members[iNdEx])
+			i = encodeVarintTx(dAtA, i, uint64(len(m.Members[iNdEx])))
+			i--
+			dAtA[i] = 0x1a
+		}
+	}
+	if len(m.PoolPubKey) > 0 {
+		i -= len(m.PoolPubKey)
+		copy(dAtA[i:], m.PoolPubKey)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.PoolPubKey)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Creator) > 0 {
+		i -= len(m.Creator)
+		copy(dAtA[i:], m.Creator)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Creator)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *MsgRegisterTssPoolResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgRegisterTssPoolResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgRegisterTssPoolResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintTx(dAtA []byte, offset int, v uint64) int {
 	offset -= sovTx(v)
 	base := offset
@@ -705,6 +1100,64 @@ func (m *MsgTssPool) Size() (n int) {
 }
 
 func (m *MsgTssPoolResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
+func (m *MsgTssKeySign) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Creator)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	return n
+}
+
+func (m *MsgTssKeySignResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
+func (m *MsgRegisterTssPool) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Creator)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.PoolPubKey)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	if len(m.Members) > 0 {
+		for _, s := range m.Members {
+			l = len(s)
+			n += 1 + l + sovTx(uint64(l))
+		}
+	}
+	l = len(m.Signature)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	return n
+}
+
+func (m *MsgRegisterTssPoolResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1266,6 +1719,366 @@ func (m *MsgTssPoolResponse) Unmarshal(dAtA []byte) error {
 		}
 		if fieldNum <= 0 {
 			return fmt.Errorf("proto: MsgTssPoolResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgTssKeySign) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgTssKeySign: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgTssKeySign: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Creator = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgTssKeySignResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgTssKeySignResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgTssKeySignResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgRegisterTssPool) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgRegisterTssPool: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgRegisterTssPool: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Creator = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field PoolPubKey", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.PoolPubKey = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Members", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Members = append(m.Members, string(dAtA[iNdEx:postIndex]))
+			iNdEx = postIndex
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Signature", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Signature = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgRegisterTssPoolResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgRegisterTssPoolResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgRegisterTssPoolResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		default:

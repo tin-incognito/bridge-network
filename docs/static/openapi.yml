@@ -464,8 +464,6 @@ paths:
                       type: array
                       items:
                         type: string
-                    signature:
-                      type: string
               pagination:
                 type: object
                 properties:
@@ -595,8 +593,6 @@ paths:
                     type: array
                     items:
                       type: string
-                  signature:
-                    type: string
         default:
           description: An unexpected error response.
           schema:
@@ -45942,6 +45938,10 @@ definitions:
           type: string
   bridge.bridge.MsgKeygenResponse:
     type: object
+  bridge.bridge.MsgRegisterTssPoolResponse:
+    type: object
+  bridge.bridge.MsgTssKeySignResponse:
+    type: object
   bridge.bridge.MsgTssPoolResponse:
     type: object
   bridge.bridge.Node:
@@ -46120,8 +46120,6 @@ definitions:
               type: array
               items:
                 type: string
-            signature:
-              type: string
       pagination:
         type: object
         properties:
@@ -46219,8 +46217,6 @@ definitions:
             type: array
             items:
               type: string
-          signature:
-            type: string
   bridge.bridge.QueryParamsResponse:
     type: object
     properties:
@@ -46242,8 +46238,6 @@ definitions:
         type: array
         items:
           type: string
-      signature:
-        type: string
   cosmos.base.query.v1beta1.PageRequest:
     type: object
     properties:
