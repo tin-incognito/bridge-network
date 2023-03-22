@@ -39,6 +39,14 @@ func TestGenesisState_Validate(t *testing.T) {
 					},
 				},
 				NodeAccountCount: 2,
+				RegisterKeygenList: []types.RegisterKeygen{
+					{
+						Index: "0",
+					},
+					{
+						Index: "1",
+					},
+				},
 				// this line is used by starport scaffolding # types/genesis/validField
 			},
 			valid: true,
@@ -80,6 +88,20 @@ func TestGenesisState_Validate(t *testing.T) {
 					},
 				},
 				NodeAccountCount: 0,
+			},
+			valid: false,
+		},
+		{
+			desc: "duplicated registerKeygen",
+			genState: &types.GenesisState{
+				RegisterKeygenList: []types.RegisterKeygen{
+					{
+						Index: "0",
+					},
+					{
+						Index: "0",
+					},
+				},
 			},
 			valid: false,
 		},

@@ -72,12 +72,42 @@
           "status": 0,
           "pub_key_set": {
             "ed25519": "",
-            "secp256k1": "bridgepubAoKaWbKDipW82DkihFjInNLRwayncGJyS6hJGgKYUp8L"
+            "secp256k1": "bridgepub1addwnpepq2pf5kdjsw9ft0xc8y3ggkxgnnfdrsdv5acxyujt4py35q5c220sklfk04j"
+          },
+          "validator_cons_pub_key": ""
+	      },
+        {
+          "node_address": "bridge16sy44cwhcp7axgmp06h2rv0pah3l0wz5slu8ml",
+          "ip_address": "",
+          "status": 0,
+          "pub_key_set": {
+            "ed25519": "",
+            "secp256k1": "bridgepub1addwnpepqddql48quh0g5ku3yp56ecgh7zc9dk3sk0u0pekqup66r3gefheqwydp2cj"
+          },
+          "validator_cons_pub_key": ""
+	      },
+        {
+          "node_address": "bridge1gtdrtr7530m0rae68lzgu72nkxf7t5h8ar7dck",
+          "ip_address": "",
+          "status": 0,
+          "pub_key_set": {
+            "ed25519": "",
+            "secp256k1": "bridgepub1addwnpepqtglqfmm886a7xd9gyzyctd4pz57t9c4ugjz6ucr2khnul7npu705666v58"
+          },
+          "validator_cons_pub_key": ""
+	      },
+        {
+          "node_address": "bridge1y9glen99sl6prthyv5rzmyv8zjn3v4r09t6qlw",
+          "ip_address": "",
+          "status": 0,
+          "pub_key_set": {
+            "ed25519": "",
+            "secp256k1": "bridgepub1addwnpepqfdruqkmpgzudekpp07hehxuc6c6yv4a5lew6pvm2093akmgcwvs5dzvyng"
           },
           "validator_cons_pub_key": ""
 	      }
       ],
-      "nodeAccountCount": "0"
+      "nodeAccountCount": "4"
     },
     "capability": {
       "index": "1",

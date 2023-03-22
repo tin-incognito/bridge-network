@@ -8,6 +8,7 @@ import "cosmos/base/query/v1beta1/pagination.proto";
 import "bridge/bridge/params.proto";
 import "bridge/bridge/keygen_block.proto";
 import "bridge/bridge/node_account.proto";
+import "bridge/bridge/register_keygen.proto";
 
 option go_package = "bridge/x/bridge/types";
 
@@ -37,6 +38,16 @@ service Query {
   }
   rpc NodeAccountAll (QueryAllNodeAccountRequest) returns (QueryAllNodeAccountResponse) {
     option (google.api.http).get = "/bridge/bridge/node_account";
+  
+  }
+  
+  // Queries a list of RegisterKeygen items.
+  rpc RegisterKeygen    (QueryGetRegisterKeygenRequest) returns (QueryGetRegisterKeygenResponse) {
+    option (google.api.http).get = "/bridge/bridge/register_keygen/{index}";
+  
+  }
+  rpc RegisterKeygenAll (QueryAllRegisterKeygenRequest) returns (QueryAllRegisterKeygenResponse) {
+    option (google.api.http).get = "/bridge/bridge/register_keygen";
   
   }
 }
@@ -82,5 +93,22 @@ message QueryAllNodeAccountRequest {
 message QueryAllNodeAccountResponse {
   repeated NodeAccount                            NodeAccount = 1 [(gogoproto.nullable) = false];
            cosmos.base.query.v1beta1.PageResponse pagination  = 2;
+}
+
+message QueryGetRegisterKeygenRequest {
+  string index = 1;
+}
+
+message QueryGetRegisterKeygenResponse {
+  RegisterKeygen registerKeygen = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllRegisterKeygenRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllRegisterKeygenResponse {
+  repeated RegisterKeygen                         registerKeygen = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination     = 2;
 }
 

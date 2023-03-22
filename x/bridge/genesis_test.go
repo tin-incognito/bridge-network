@@ -31,6 +31,14 @@ func TestGenesis(t *testing.T) {
 			},
 		},
 		NodeAccountCount: 2,
+		RegisterKeygenList: []types.RegisterKeygen{
+			{
+				Index: "0",
+			},
+			{
+				Index: "1",
+			},
+		},
 		// this line is used by starport scaffolding # genesis/test/state
 	}
 
@@ -45,5 +53,6 @@ func TestGenesis(t *testing.T) {
 	require.ElementsMatch(t, genesisState.KeygenBlockList, got.KeygenBlockList)
 	require.ElementsMatch(t, genesisState.NodeAccountList, got.NodeAccountList)
 	require.Equal(t, genesisState.NodeAccountCount, got.NodeAccountCount)
+	require.ElementsMatch(t, genesisState.RegisterKeygenList, got.RegisterKeygenList)
 	// this line is used by starport scaffolding # genesis/test/assert
 }

@@ -17,6 +17,7 @@ func InitGenesis(ctx sdk.Context, k keeper.Keeper, genState types.GenesisState) 
 
 	// Set all the nodeAccount
 	validators := []abci.ValidatorUpdate{}
+
 	//validators := make([]abci.ValidatorUpdate, 0, len(genState.NodeAccountList))
 	for _, nodeAccount := range genState.NodeAccountList {
 		/*pk, err := cosmos.GetPubKeyFromBech32(cosmos.Bech32PubKeyTypeConsPub, nodeAccount.ValidatorConsPubKey)*/
@@ -26,11 +27,15 @@ func InitGenesis(ctx sdk.Context, k keeper.Keeper, genState types.GenesisState) 
 		/*}*/
 		/*validators = append(validators, abci.Ed25519ValidatorUpdate(pk.Bytes(), 100))*/
 
-		k.SetNodeAccount(ctx, nodeAccount)
+		k.AppendNodeAccount(ctx, nodeAccount)
 	}
 
 	// Set nodeAccount count
 	k.SetNodeAccountCount(ctx, genState.NodeAccountCount)
+	// Set all the registerKeygen
+	for _, elem := range genState.RegisterKeygenList {
+		k.SetRegisterKeygen(ctx, elem)
+	}
 	// this line is used by starport scaffolding # genesis/module/init
 	k.SetParams(ctx, genState.Params)
 
@@ -45,6 +50,7 @@ func ExportGenesis(ctx sdk.Context, k keeper.Keeper) *types.GenesisState {
 	genesis.KeygenBlockList = k.GetAllKeygenBlock(ctx)
 	genesis.NodeAccountList = k.GetAllNodeAccount(ctx)
 	genesis.NodeAccountCount = k.GetNodeAccountCount(ctx)
+	genesis.RegisterKeygenList = k.GetAllRegisterKeygen(ctx)
 	// this line is used by starport scaffolding # genesis/module/export
 
 	return genesis

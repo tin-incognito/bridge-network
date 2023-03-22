@@ -25,7 +25,9 @@ func CmdTssPool() *cobra.Command {
 				return err
 			}
 
-			msg := &types.MsgTssPool{}
+			msg := &types.MsgTssPool{
+				Creator: clientCtx.GetFromAddress().String(),
+			}
 
 			/*msg := types.NewMsgTssPool(*/
 			/*clientCtx.GetFromAddress().String(),*/
