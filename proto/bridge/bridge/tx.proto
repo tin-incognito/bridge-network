@@ -44,9 +44,8 @@ message MsgTssKeySignResponse {}
 
 message MsgRegisterTssPool {
   string creator = 1;
-  string pool_pub_key = 2;
-  repeated string members = 3;
-  string signature = 4;
+  string msg = 2;
+  string signature = 3;
 }
 
 message MsgRegisterTssPoolResponse {}

@@ -9,13 +9,12 @@ const TypeMsgRegisterTssPool = "register_tss_pool"
 
 var _ sdk.Msg = &MsgRegisterTssPool{}
 
-func NewMsgRegisterTssPool(creator, poolPubKey, signature string, members []string) *MsgRegisterTssPool {
+func NewMsgRegisterTssPool(creator, msg, signature string) (*MsgRegisterTssPool, error) {
 	return &MsgRegisterTssPool{
-		Creator:    creator,
-		Members:    members,
-		PoolPubKey: poolPubKey,
-		Signature:  signature,
-	}
+		Creator:   creator,
+		Msg:       msg,
+		Signature: signature,
+	}, nil
 }
 
 func (msg *MsgRegisterTssPool) Route() string {
