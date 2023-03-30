@@ -28,6 +28,18 @@ const (
 	// TODO: Determine the simulation weight value
 	defaultWeightMsgKeygen int = 100
 
+	opWeightMsgTssPool = "op_weight_msg_tss_pool"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgTssPool int = 100
+
+	opWeightMsgTssKeySign = "op_weight_msg_tss_key_sign"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgTssKeySign int = 100
+
+	opWeightMsgRegisterTssPool = "op_weight_msg_register_tss_pool"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgRegisterTssPool int = 100
+
 	// this line is used by starport scaffolding # simapp/module/const
 )
 
@@ -71,6 +83,39 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 	operations = append(operations, simulation.NewWeightedOperation(
 		weightMsgKeygen,
 		bridgesimulation.SimulateMsgKeygen(am.accountKeeper, am.bankKeeper, am.keeper),
+	))
+
+	var weightMsgTssPool int
+	simState.AppParams.GetOrGenerate(simState.Cdc, opWeightMsgTssPool, &weightMsgTssPool, nil,
+		func(_ *rand.Rand) {
+			weightMsgTssPool = defaultWeightMsgTssPool
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgTssPool,
+		bridgesimulation.SimulateMsgTssPool(am.accountKeeper, am.bankKeeper, am.keeper),
+	))
+
+	var weightMsgTssKeySign int
+	simState.AppParams.GetOrGenerate(simState.Cdc, opWeightMsgTssKeySign, &weightMsgTssKeySign, nil,
+		func(_ *rand.Rand) {
+			weightMsgTssKeySign = defaultWeightMsgTssKeySign
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgTssKeySign,
+		bridgesimulation.SimulateMsgTssKeySign(am.accountKeeper, am.bankKeeper, am.keeper),
+	))
+
+	var weightMsgRegisterTssPool int
+	simState.AppParams.GetOrGenerate(simState.Cdc, opWeightMsgRegisterTssPool, &weightMsgRegisterTssPool, nil,
+		func(_ *rand.Rand) {
+			weightMsgRegisterTssPool = defaultWeightMsgRegisterTssPool
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgRegisterTssPool,
+		bridgesimulation.SimulateMsgRegisterTssPool(am.accountKeeper, am.bankKeeper, am.keeper),
 	))
 
 	// this line is used by starport scaffolding # simapp/module/operation

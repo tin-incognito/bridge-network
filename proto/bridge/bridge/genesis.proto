@@ -1,12 +1,21 @@
 syntax = "proto3";
+
 package bridge.bridge;
 
 import "gogoproto/gogo.proto";
 import "bridge/bridge/params.proto";
+import "bridge/bridge/keygen_block.proto";
+import "bridge/bridge/node_account.proto";
+import "bridge/bridge/register_keygen.proto";
 
 option go_package = "bridge/x/bridge/types";
 
 // GenesisState defines the bridge module's genesis state.
 message GenesisState {
-  Params params = 1 [(gogoproto.nullable) = false];
+           Params         params             = 1 [(gogoproto.nullable) = false];
+  repeated KeygenBlock    keygenBlockList    = 2 [(gogoproto.nullable) = false];
+  repeated NodeAccount    nodeAccountList    = 3 [(gogoproto.nullable) = false];
+           uint64         nodeAccountCount   = 4;
+  repeated RegisterKeygen registerKeygenList = 5 [(gogoproto.nullable) = false];
 }
+

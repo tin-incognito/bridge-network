@@ -1,0 +1,10 @@
+syntax = "proto3";
+package bridge.bridge;
+
+option go_package = "bridge/x/bridge/types";
+
+message KeygenValue {
+  string id = 1;
+  int32 type = 2;
+  repeated string members = 3;
+}

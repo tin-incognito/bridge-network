@@ -4,6 +4,405 @@ info:
   name: ''
   description: ''
 paths:
+  /bridge/bridge/keygen_block:
+    get:
+      operationId: BridgeBridgeKeygenBlockAll
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              keygenBlock:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    index:
+                      type: string
+                    height:
+                      type: string
+                      format: int64
+                    keygens:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                          type:
+                            type: integer
+                            format: int32
+                          members:
+                            type: array
+                            items:
+                              type: string
+              pagination:
+                type: object
+                properties:
+                  next_key:
+                    type: string
+                    format: byte
+                    description: |-
+                      next_key is the key to be passed to PageRequest.key to
+                      query the next page most efficiently. It will be empty if
+                      there are no more results.
+                  total:
+                    type: string
+                    format: uint64
+                    title: >-
+                      total is total number of results available if
+                      PageRequest.count_total
+
+                      was set, its value is undefined otherwise
+                description: >-
+                  PageResponse is to be embedded in gRPC response messages where
+                  the
+
+                  corresponding request message has used PageRequest.
+
+                   message SomeResponse {
+                           repeated Bar results = 1;
+                           PageResponse page = 2;
+                   }
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: pagination.key
+          description: |-
+            key is a value returned in PageResponse.next_key to begin
+            querying the next page most efficiently. Only one of offset or key
+            should be set.
+          in: query
+          required: false
+          type: string
+          format: byte
+        - name: pagination.offset
+          description: >-
+            offset is a numeric offset that can be used when key is unavailable.
+
+            It is less efficient than using key. Only one of offset or key
+            should
+
+            be set.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.limit
+          description: >-
+            limit is the total number of results to be returned in the result
+            page.
+
+            If left empty it will default to a value to be set by each app.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.count_total
+          description: >-
+            count_total is set to true  to indicate that the result set should
+            include
+
+            a count of the total number of items available for pagination in
+            UIs.
+
+            count_total is only respected when offset is used. It is ignored
+            when key
+
+            is set.
+          in: query
+          required: false
+          type: boolean
+        - name: pagination.reverse
+          description: >-
+            reverse is set to true if results are to be returned in the
+            descending order.
+
+
+            Since: cosmos-sdk 0.43
+          in: query
+          required: false
+          type: boolean
+      tags:
+        - Query
+  /bridge/bridge/keygen_block/{index}:
+    get:
+      summary: Queries a list of KeygenBlock items.
+      operationId: BridgeBridgeKeygenBlock
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              keygenBlock:
+                type: object
+                properties:
+                  index:
+                    type: string
+                  height:
+                    type: string
+                    format: int64
+                  keygens:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        type:
+                          type: integer
+                          format: int32
+                        members:
+                          type: array
+                          items:
+                            type: string
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: index
+          in: path
+          required: true
+          type: string
+      tags:
+        - Query
+  /bridge/bridge/node_account:
+    get:
+      operationId: BridgeBridgeNodeAccountAll
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              NodeAccount:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uint64
+                    node_address:
+                      type: string
+                    ip_address:
+                      type: string
+                    status:
+                      type: integer
+                      format: int32
+                    pub_key_set:
+                      type: object
+                      properties:
+                        secp256k1:
+                          type: string
+                        ed25519:
+                          type: string
+                    validator_cons_pub_key:
+                      type: string
+                    signer_membership:
+                      type: array
+                      items:
+                        type: string
+              pagination:
+                type: object
+                properties:
+                  next_key:
+                    type: string
+                    format: byte
+                    description: |-
+                      next_key is the key to be passed to PageRequest.key to
+                      query the next page most efficiently. It will be empty if
+                      there are no more results.
+                  total:
+                    type: string
+                    format: uint64
+                    title: >-
+                      total is total number of results available if
+                      PageRequest.count_total
+
+                      was set, its value is undefined otherwise
+                description: >-
+                  PageResponse is to be embedded in gRPC response messages where
+                  the
+
+                  corresponding request message has used PageRequest.
+
+                   message SomeResponse {
+                           repeated Bar results = 1;
+                           PageResponse page = 2;
+                   }
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: pagination.key
+          description: |-
+            key is a value returned in PageResponse.next_key to begin
+            querying the next page most efficiently. Only one of offset or key
+            should be set.
+          in: query
+          required: false
+          type: string
+          format: byte
+        - name: pagination.offset
+          description: >-
+            offset is a numeric offset that can be used when key is unavailable.
+
+            It is less efficient than using key. Only one of offset or key
+            should
+
+            be set.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.limit
+          description: >-
+            limit is the total number of results to be returned in the result
+            page.
+
+            If left empty it will default to a value to be set by each app.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.count_total
+          description: >-
+            count_total is set to true  to indicate that the result set should
+            include
+
+            a count of the total number of items available for pagination in
+            UIs.
+
+            count_total is only respected when offset is used. It is ignored
+            when key
+
+            is set.
+          in: query
+          required: false
+          type: boolean
+        - name: pagination.reverse
+          description: >-
+            reverse is set to true if results are to be returned in the
+            descending order.
+
+
+            Since: cosmos-sdk 0.43
+          in: query
+          required: false
+          type: boolean
+      tags:
+        - Query
+  /bridge/bridge/node_account/{id}:
+    get:
+      summary: Queries a list of NodeAccount items.
+      operationId: BridgeBridgeNodeAccount
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              NodeAccount:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uint64
+                  node_address:
+                    type: string
+                  ip_address:
+                    type: string
+                  status:
+                    type: integer
+                    format: int32
+                  pub_key_set:
+                    type: object
+                    properties:
+                      secp256k1:
+                        type: string
+                      ed25519:
+                        type: string
+                  validator_cons_pub_key:
+                    type: string
+                  signer_membership:
+                    type: array
+                    items:
+                      type: string
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          format: uint64
+      tags:
+        - Query
   /bridge/bridge/params:
     get:
       summary: Parameters queries the parameters of the module.
@@ -38,6 +437,185 @@ paths:
                     '@type':
                       type: string
                   additionalProperties: {}
+      tags:
+        - Query
+  /bridge/bridge/register_keygen:
+    get:
+      operationId: BridgeBridgeRegisterKeygenAll
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              registerKeygen:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    index:
+                      type: string
+                    height:
+                      type: string
+                      format: int64
+                    pool_pub_key:
+                      type: string
+                    members:
+                      type: array
+                      items:
+                        type: string
+              pagination:
+                type: object
+                properties:
+                  next_key:
+                    type: string
+                    format: byte
+                    description: |-
+                      next_key is the key to be passed to PageRequest.key to
+                      query the next page most efficiently. It will be empty if
+                      there are no more results.
+                  total:
+                    type: string
+                    format: uint64
+                    title: >-
+                      total is total number of results available if
+                      PageRequest.count_total
+
+                      was set, its value is undefined otherwise
+                description: >-
+                  PageResponse is to be embedded in gRPC response messages where
+                  the
+
+                  corresponding request message has used PageRequest.
+
+                   message SomeResponse {
+                           repeated Bar results = 1;
+                           PageResponse page = 2;
+                   }
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: pagination.key
+          description: |-
+            key is a value returned in PageResponse.next_key to begin
+            querying the next page most efficiently. Only one of offset or key
+            should be set.
+          in: query
+          required: false
+          type: string
+          format: byte
+        - name: pagination.offset
+          description: >-
+            offset is a numeric offset that can be used when key is unavailable.
+
+            It is less efficient than using key. Only one of offset or key
+            should
+
+            be set.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.limit
+          description: >-
+            limit is the total number of results to be returned in the result
+            page.
+
+            If left empty it will default to a value to be set by each app.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.count_total
+          description: >-
+            count_total is set to true  to indicate that the result set should
+            include
+
+            a count of the total number of items available for pagination in
+            UIs.
+
+            count_total is only respected when offset is used. It is ignored
+            when key
+
+            is set.
+          in: query
+          required: false
+          type: boolean
+        - name: pagination.reverse
+          description: >-
+            reverse is set to true if results are to be returned in the
+            descending order.
+
+
+            Since: cosmos-sdk 0.43
+          in: query
+          required: false
+          type: boolean
+      tags:
+        - Query
+  /bridge/bridge/register_keygen/{index}:
+    get:
+      summary: Queries a list of RegisterKeygen items.
+      operationId: BridgeBridgeRegisterKeygen
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              registerKeygen:
+                type: object
+                properties:
+                  index:
+                    type: string
+                  height:
+                    type: string
+                    format: int64
+                  pool_pub_key:
+                    type: string
+                  members:
+                    type: array
+                    items:
+                      type: string
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: index
+          in: path
+          required: true
+          type: string
       tags:
         - Query
   /cosmos/auth/v1beta1/accounts:
@@ -45304,11 +45882,341 @@ paths:
       tags:
         - Query
 definitions:
+  bridge.bridge.Blame:
+    type: object
+    properties:
+      fail_reason:
+        type: string
+      is_unicast:
+        type: boolean
+      blame_nodes:
+        type: array
+        items:
+          type: object
+          properties:
+            pubkey:
+              type: string
+            blame_data:
+              type: string
+              format: byte
+            blame_signature:
+              type: string
+              format: byte
+  bridge.bridge.KeygenBlock:
+    type: object
+    properties:
+      index:
+        type: string
+      height:
+        type: string
+        format: int64
+      keygens:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: integer
+              format: int32
+            members:
+              type: array
+              items:
+                type: string
+  bridge.bridge.KeygenValue:
+    type: object
+    properties:
+      id:
+        type: string
+      type:
+        type: integer
+        format: int32
+      members:
+        type: array
+        items:
+          type: string
   bridge.bridge.MsgKeygenResponse:
     type: object
+  bridge.bridge.MsgRegisterTssPoolResponse:
+    type: object
+  bridge.bridge.MsgTssKeySignResponse:
+    type: object
+  bridge.bridge.MsgTssPoolResponse:
+    type: object
+  bridge.bridge.Node:
+    type: object
+    properties:
+      pubkey:
+        type: string
+      blame_data:
+        type: string
+        format: byte
+      blame_signature:
+        type: string
+        format: byte
+  bridge.bridge.NodeAccount:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uint64
+      node_address:
+        type: string
+      ip_address:
+        type: string
+      status:
+        type: integer
+        format: int32
+      pub_key_set:
+        type: object
+        properties:
+          secp256k1:
+            type: string
+          ed25519:
+            type: string
+      validator_cons_pub_key:
+        type: string
+      signer_membership:
+        type: array
+        items:
+          type: string
   bridge.bridge.Params:
     type: object
     description: Params defines the parameters for the module.
+  bridge.bridge.PubKeySet:
+    type: object
+    properties:
+      secp256k1:
+        type: string
+      ed25519:
+        type: string
+  bridge.bridge.QueryAllKeygenBlockResponse:
+    type: object
+    properties:
+      keygenBlock:
+        type: array
+        items:
+          type: object
+          properties:
+            index:
+              type: string
+            height:
+              type: string
+              format: int64
+            keygens:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  type:
+                    type: integer
+                    format: int32
+                  members:
+                    type: array
+                    items:
+                      type: string
+      pagination:
+        type: object
+        properties:
+          next_key:
+            type: string
+            format: byte
+            description: |-
+              next_key is the key to be passed to PageRequest.key to
+              query the next page most efficiently. It will be empty if
+              there are no more results.
+          total:
+            type: string
+            format: uint64
+            title: >-
+              total is total number of results available if
+              PageRequest.count_total
+
+              was set, its value is undefined otherwise
+        description: |-
+          PageResponse is to be embedded in gRPC response messages where the
+          corresponding request message has used PageRequest.
+
+           message SomeResponse {
+                   repeated Bar results = 1;
+                   PageResponse page = 2;
+           }
+  bridge.bridge.QueryAllNodeAccountResponse:
+    type: object
+    properties:
+      NodeAccount:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              format: uint64
+            node_address:
+              type: string
+            ip_address:
+              type: string
+            status:
+              type: integer
+              format: int32
+            pub_key_set:
+              type: object
+              properties:
+                secp256k1:
+                  type: string
+                ed25519:
+                  type: string
+            validator_cons_pub_key:
+              type: string
+            signer_membership:
+              type: array
+              items:
+                type: string
+      pagination:
+        type: object
+        properties:
+          next_key:
+            type: string
+            format: byte
+            description: |-
+              next_key is the key to be passed to PageRequest.key to
+              query the next page most efficiently. It will be empty if
+              there are no more results.
+          total:
+            type: string
+            format: uint64
+            title: >-
+              total is total number of results available if
+              PageRequest.count_total
+
+              was set, its value is undefined otherwise
+        description: |-
+          PageResponse is to be embedded in gRPC response messages where the
+          corresponding request message has used PageRequest.
+
+           message SomeResponse {
+                   repeated Bar results = 1;
+                   PageResponse page = 2;
+           }
+  bridge.bridge.QueryAllRegisterKeygenResponse:
+    type: object
+    properties:
+      registerKeygen:
+        type: array
+        items:
+          type: object
+          properties:
+            index:
+              type: string
+            height:
+              type: string
+              format: int64
+            pool_pub_key:
+              type: string
+            members:
+              type: array
+              items:
+                type: string
+      pagination:
+        type: object
+        properties:
+          next_key:
+            type: string
+            format: byte
+            description: |-
+              next_key is the key to be passed to PageRequest.key to
+              query the next page most efficiently. It will be empty if
+              there are no more results.
+          total:
+            type: string
+            format: uint64
+            title: >-
+              total is total number of results available if
+              PageRequest.count_total
+
+              was set, its value is undefined otherwise
+        description: |-
+          PageResponse is to be embedded in gRPC response messages where the
+          corresponding request message has used PageRequest.
+
+           message SomeResponse {
+                   repeated Bar results = 1;
+                   PageResponse page = 2;
+           }
+  bridge.bridge.QueryGetKeygenBlockResponse:
+    type: object
+    properties:
+      keygenBlock:
+        type: object
+        properties:
+          index:
+            type: string
+          height:
+            type: string
+            format: int64
+          keygens:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                type:
+                  type: integer
+                  format: int32
+                members:
+                  type: array
+                  items:
+                    type: string
+  bridge.bridge.QueryGetNodeAccountResponse:
+    type: object
+    properties:
+      NodeAccount:
+        type: object
+        properties:
+          id:
+            type: string
+            format: uint64
+          node_address:
+            type: string
+          ip_address:
+            type: string
+          status:
+            type: integer
+            format: int32
+          pub_key_set:
+            type: object
+            properties:
+              secp256k1:
+                type: string
+              ed25519:
+                type: string
+          validator_cons_pub_key:
+            type: string
+          signer_membership:
+            type: array
+            items:
+              type: string
+  bridge.bridge.QueryGetRegisterKeygenResponse:
+    type: object
+    properties:
+      registerKeygen:
+        type: object
+        properties:
+          index:
+            type: string
+          height:
+            type: string
+            format: int64
+          pool_pub_key:
+            type: string
+          members:
+            type: array
+            items:
+              type: string
   bridge.bridge.QueryParamsResponse:
     type: object
     properties:
@@ -45316,6 +46224,97 @@ definitions:
         description: params holds all the parameters of this module.
         type: object
     description: QueryParamsResponse is response type for the Query/Params RPC method.
+  bridge.bridge.RegisterKeygen:
+    type: object
+    properties:
+      index:
+        type: string
+      height:
+        type: string
+        format: int64
+      pool_pub_key:
+        type: string
+      members:
+        type: array
+        items:
+          type: string
+  cosmos.base.query.v1beta1.PageRequest:
+    type: object
+    properties:
+      key:
+        type: string
+        format: byte
+        description: |-
+          key is a value returned in PageResponse.next_key to begin
+          querying the next page most efficiently. Only one of offset or key
+          should be set.
+      offset:
+        type: string
+        format: uint64
+        description: |-
+          offset is a numeric offset that can be used when key is unavailable.
+          It is less efficient than using key. Only one of offset or key should
+          be set.
+      limit:
+        type: string
+        format: uint64
+        description: >-
+          limit is the total number of results to be returned in the result
+          page.
+
+          If left empty it will default to a value to be set by each app.
+      count_total:
+        type: boolean
+        description: >-
+          count_total is set to true  to indicate that the result set should
+          include
+
+          a count of the total number of items available for pagination in UIs.
+
+          count_total is only respected when offset is used. It is ignored when
+          key
+
+          is set.
+      reverse:
+        type: boolean
+        description: >-
+          reverse is set to true if results are to be returned in the descending
+          order.
+
+
+          Since: cosmos-sdk 0.43
+    description: |-
+      message SomeRequest {
+               Foo some_parameter = 1;
+               PageRequest pagination = 2;
+       }
+    title: |-
+      PageRequest is to be embedded in gRPC request messages for efficient
+      pagination. Ex:
+  cosmos.base.query.v1beta1.PageResponse:
+    type: object
+    properties:
+      next_key:
+        type: string
+        format: byte
+        description: |-
+          next_key is the key to be passed to PageRequest.key to
+          query the next page most efficiently. It will be empty if
+          there are no more results.
+      total:
+        type: string
+        format: uint64
+        title: |-
+          total is total number of results available if PageRequest.count_total
+          was set, its value is undefined otherwise
+    description: |-
+      PageResponse is to be embedded in gRPC response messages where the
+      corresponding request message has used PageRequest.
+
+       message SomeResponse {
+               repeated Bar results = 1;
+               PageResponse page = 2;
+       }
   google.protobuf.Any:
     type: object
     properties:
@@ -46410,83 +47409,6 @@ definitions:
             type: string
             format: uint64
     description: QueryParamsResponse is the response type for the Query/Params RPC method.
-  cosmos.base.query.v1beta1.PageRequest:
-    type: object
-    properties:
-      key:
-        type: string
-        format: byte
-        description: |-
-          key is a value returned in PageResponse.next_key to begin
-          querying the next page most efficiently. Only one of offset or key
-          should be set.
-      offset:
-        type: string
-        format: uint64
-        description: |-
-          offset is a numeric offset that can be used when key is unavailable.
-          It is less efficient than using key. Only one of offset or key should
-          be set.
-      limit:
-        type: string
-        format: uint64
-        description: >-
-          limit is the total number of results to be returned in the result
-          page.
-
-          If left empty it will default to a value to be set by each app.
-      count_total:
-        type: boolean
-        description: >-
-          count_total is set to true  to indicate that the result set should
-          include
-
-          a count of the total number of items available for pagination in UIs.
-
-          count_total is only respected when offset is used. It is ignored when
-          key
-
-          is set.
-      reverse:
-        type: boolean
-        description: >-
-          reverse is set to true if results are to be returned in the descending
-          order.
-
-
-          Since: cosmos-sdk 0.43
-    description: |-
-      message SomeRequest {
-               Foo some_parameter = 1;
-               PageRequest pagination = 2;
-       }
-    title: |-
-      PageRequest is to be embedded in gRPC request messages for efficient
-      pagination. Ex:
-  cosmos.base.query.v1beta1.PageResponse:
-    type: object
-    properties:
-      next_key:
-        type: string
-        format: byte
-        description: |-
-          next_key is the key to be passed to PageRequest.key to
-          query the next page most efficiently. It will be empty if
-          there are no more results.
-      total:
-        type: string
-        format: uint64
-        title: |-
-          total is total number of results available if PageRequest.count_total
-          was set, its value is undefined otherwise
-    description: |-
-      PageResponse is to be embedded in gRPC response messages where the
-      corresponding request message has used PageRequest.
-
-       message SomeResponse {
-               repeated Bar results = 1;
-               PageResponse page = 2;
-       }
   cosmos.authz.v1beta1.Grant:
     type: object
     properties:

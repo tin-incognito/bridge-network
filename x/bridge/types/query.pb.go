@@ -6,7 +6,7 @@ package types
 import (
 	context "context"
 	fmt "fmt"
-	_ "github.com/cosmos/cosmos-sdk/types/query"
+	query "github.com/cosmos/cosmos-sdk/types/query"
 	_ "github.com/gogo/protobuf/gogoproto"
 	grpc1 "github.com/gogo/protobuf/grpc"
 	proto "github.com/gogo/protobuf/proto"
@@ -113,33 +113,625 @@ func (m *QueryParamsResponse) GetParams() Params {
 	return Params{}
 }
 
+type QueryGetKeygenBlockRequest struct {
+	Index string `protobuf:"bytes,1,opt,name=index,proto3" json:"index,omitempty"`
+}
+
+func (m *QueryGetKeygenBlockRequest) Reset()         { *m = QueryGetKeygenBlockRequest{} }
+func (m *QueryGetKeygenBlockRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetKeygenBlockRequest) ProtoMessage()    {}
+func (*QueryGetKeygenBlockRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c574d232f57cf2ee, []int{2}
+}
+func (m *QueryGetKeygenBlockRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetKeygenBlockRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetKeygenBlockRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetKeygenBlockRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetKeygenBlockRequest.Merge(m, src)
+}
+func (m *QueryGetKeygenBlockRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetKeygenBlockRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetKeygenBlockRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetKeygenBlockRequest proto.InternalMessageInfo
+
+func (m *QueryGetKeygenBlockRequest) GetIndex() string {
+	if m != nil {
+		return m.Index
+	}
+	return ""
+}
+
+type QueryGetKeygenBlockResponse struct {
+	KeygenBlock KeygenBlock `protobuf:"bytes,1,opt,name=keygenBlock,proto3" json:"keygenBlock"`
+}
+
+func (m *QueryGetKeygenBlockResponse) Reset()         { *m = QueryGetKeygenBlockResponse{} }
+func (m *QueryGetKeygenBlockResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetKeygenBlockResponse) ProtoMessage()    {}
+func (*QueryGetKeygenBlockResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c574d232f57cf2ee, []int{3}
+}
+func (m *QueryGetKeygenBlockResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetKeygenBlockResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetKeygenBlockResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetKeygenBlockResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetKeygenBlockResponse.Merge(m, src)
+}
+func (m *QueryGetKeygenBlockResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetKeygenBlockResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetKeygenBlockResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetKeygenBlockResponse proto.InternalMessageInfo
+
+func (m *QueryGetKeygenBlockResponse) GetKeygenBlock() KeygenBlock {
+	if m != nil {
+		return m.KeygenBlock
+	}
+	return KeygenBlock{}
+}
+
+type QueryAllKeygenBlockRequest struct {
+	Pagination *query.PageRequest `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryAllKeygenBlockRequest) Reset()         { *m = QueryAllKeygenBlockRequest{} }
+func (m *QueryAllKeygenBlockRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryAllKeygenBlockRequest) ProtoMessage()    {}
+func (*QueryAllKeygenBlockRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c574d232f57cf2ee, []int{4}
+}
+func (m *QueryAllKeygenBlockRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryAllKeygenBlockRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryAllKeygenBlockRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryAllKeygenBlockRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryAllKeygenBlockRequest.Merge(m, src)
+}
+func (m *QueryAllKeygenBlockRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryAllKeygenBlockRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryAllKeygenBlockRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryAllKeygenBlockRequest proto.InternalMessageInfo
+
+func (m *QueryAllKeygenBlockRequest) GetPagination() *query.PageRequest {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+type QueryAllKeygenBlockResponse struct {
+	KeygenBlock []KeygenBlock       `protobuf:"bytes,1,rep,name=keygenBlock,proto3" json:"keygenBlock"`
+	Pagination  *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryAllKeygenBlockResponse) Reset()         { *m = QueryAllKeygenBlockResponse{} }
+func (m *QueryAllKeygenBlockResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryAllKeygenBlockResponse) ProtoMessage()    {}
+func (*QueryAllKeygenBlockResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c574d232f57cf2ee, []int{5}
+}
+func (m *QueryAllKeygenBlockResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryAllKeygenBlockResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryAllKeygenBlockResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryAllKeygenBlockResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryAllKeygenBlockResponse.Merge(m, src)
+}
+func (m *QueryAllKeygenBlockResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryAllKeygenBlockResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryAllKeygenBlockResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryAllKeygenBlockResponse proto.InternalMessageInfo
+
+func (m *QueryAllKeygenBlockResponse) GetKeygenBlock() []KeygenBlock {
+	if m != nil {
+		return m.KeygenBlock
+	}
+	return nil
+}
+
+func (m *QueryAllKeygenBlockResponse) GetPagination() *query.PageResponse {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+type QueryGetNodeAccountRequest struct {
+	Id uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+}
+
+func (m *QueryGetNodeAccountRequest) Reset()         { *m = QueryGetNodeAccountRequest{} }
+func (m *QueryGetNodeAccountRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetNodeAccountRequest) ProtoMessage()    {}
+func (*QueryGetNodeAccountRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c574d232f57cf2ee, []int{6}
+}
+func (m *QueryGetNodeAccountRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetNodeAccountRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetNodeAccountRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetNodeAccountRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetNodeAccountRequest.Merge(m, src)
+}
+func (m *QueryGetNodeAccountRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetNodeAccountRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetNodeAccountRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetNodeAccountRequest proto.InternalMessageInfo
+
+func (m *QueryGetNodeAccountRequest) GetId() uint64 {
+	if m != nil {
+		return m.Id
+	}
+	return 0
+}
+
+type QueryGetNodeAccountResponse struct {
+	NodeAccount NodeAccount `protobuf:"bytes,1,opt,name=NodeAccount,proto3" json:"NodeAccount"`
+}
+
+func (m *QueryGetNodeAccountResponse) Reset()         { *m = QueryGetNodeAccountResponse{} }
+func (m *QueryGetNodeAccountResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetNodeAccountResponse) ProtoMessage()    {}
+func (*QueryGetNodeAccountResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c574d232f57cf2ee, []int{7}
+}
+func (m *QueryGetNodeAccountResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetNodeAccountResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetNodeAccountResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetNodeAccountResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetNodeAccountResponse.Merge(m, src)
+}
+func (m *QueryGetNodeAccountResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetNodeAccountResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetNodeAccountResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetNodeAccountResponse proto.InternalMessageInfo
+
+func (m *QueryGetNodeAccountResponse) GetNodeAccount() NodeAccount {
+	if m != nil {
+		return m.NodeAccount
+	}
+	return NodeAccount{}
+}
+
+type QueryAllNodeAccountRequest struct {
+	Pagination *query.PageRequest `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryAllNodeAccountRequest) Reset()         { *m = QueryAllNodeAccountRequest{} }
+func (m *QueryAllNodeAccountRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryAllNodeAccountRequest) ProtoMessage()    {}
+func (*QueryAllNodeAccountRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c574d232f57cf2ee, []int{8}
+}
+func (m *QueryAllNodeAccountRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryAllNodeAccountRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryAllNodeAccountRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryAllNodeAccountRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryAllNodeAccountRequest.Merge(m, src)
+}
+func (m *QueryAllNodeAccountRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryAllNodeAccountRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryAllNodeAccountRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryAllNodeAccountRequest proto.InternalMessageInfo
+
+func (m *QueryAllNodeAccountRequest) GetPagination() *query.PageRequest {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+type QueryAllNodeAccountResponse struct {
+	NodeAccount []NodeAccount       `protobuf:"bytes,1,rep,name=NodeAccount,proto3" json:"NodeAccount"`
+	Pagination  *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryAllNodeAccountResponse) Reset()         { *m = QueryAllNodeAccountResponse{} }
+func (m *QueryAllNodeAccountResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryAllNodeAccountResponse) ProtoMessage()    {}
+func (*QueryAllNodeAccountResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c574d232f57cf2ee, []int{9}
+}
+func (m *QueryAllNodeAccountResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryAllNodeAccountResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryAllNodeAccountResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryAllNodeAccountResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryAllNodeAccountResponse.Merge(m, src)
+}
+func (m *QueryAllNodeAccountResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryAllNodeAccountResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryAllNodeAccountResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryAllNodeAccountResponse proto.InternalMessageInfo
+
+func (m *QueryAllNodeAccountResponse) GetNodeAccount() []NodeAccount {
+	if m != nil {
+		return m.NodeAccount
+	}
+	return nil
+}
+
+func (m *QueryAllNodeAccountResponse) GetPagination() *query.PageResponse {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+type QueryGetRegisterKeygenRequest struct {
+	Index string `protobuf:"bytes,1,opt,name=index,proto3" json:"index,omitempty"`
+}
+
+func (m *QueryGetRegisterKeygenRequest) Reset()         { *m = QueryGetRegisterKeygenRequest{} }
+func (m *QueryGetRegisterKeygenRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetRegisterKeygenRequest) ProtoMessage()    {}
+func (*QueryGetRegisterKeygenRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c574d232f57cf2ee, []int{10}
+}
+func (m *QueryGetRegisterKeygenRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetRegisterKeygenRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetRegisterKeygenRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetRegisterKeygenRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetRegisterKeygenRequest.Merge(m, src)
+}
+func (m *QueryGetRegisterKeygenRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetRegisterKeygenRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetRegisterKeygenRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetRegisterKeygenRequest proto.InternalMessageInfo
+
+func (m *QueryGetRegisterKeygenRequest) GetIndex() string {
+	if m != nil {
+		return m.Index
+	}
+	return ""
+}
+
+type QueryGetRegisterKeygenResponse struct {
+	RegisterKeygen RegisterKeygen `protobuf:"bytes,1,opt,name=registerKeygen,proto3" json:"registerKeygen"`
+}
+
+func (m *QueryGetRegisterKeygenResponse) Reset()         { *m = QueryGetRegisterKeygenResponse{} }
+func (m *QueryGetRegisterKeygenResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetRegisterKeygenResponse) ProtoMessage()    {}
+func (*QueryGetRegisterKeygenResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c574d232f57cf2ee, []int{11}
+}
+func (m *QueryGetRegisterKeygenResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetRegisterKeygenResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetRegisterKeygenResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetRegisterKeygenResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetRegisterKeygenResponse.Merge(m, src)
+}
+func (m *QueryGetRegisterKeygenResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetRegisterKeygenResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetRegisterKeygenResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetRegisterKeygenResponse proto.InternalMessageInfo
+
+func (m *QueryGetRegisterKeygenResponse) GetRegisterKeygen() RegisterKeygen {
+	if m != nil {
+		return m.RegisterKeygen
+	}
+	return RegisterKeygen{}
+}
+
+type QueryAllRegisterKeygenRequest struct {
+	Pagination *query.PageRequest `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryAllRegisterKeygenRequest) Reset()         { *m = QueryAllRegisterKeygenRequest{} }
+func (m *QueryAllRegisterKeygenRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryAllRegisterKeygenRequest) ProtoMessage()    {}
+func (*QueryAllRegisterKeygenRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c574d232f57cf2ee, []int{12}
+}
+func (m *QueryAllRegisterKeygenRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryAllRegisterKeygenRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryAllRegisterKeygenRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryAllRegisterKeygenRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryAllRegisterKeygenRequest.Merge(m, src)
+}
+func (m *QueryAllRegisterKeygenRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryAllRegisterKeygenRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryAllRegisterKeygenRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryAllRegisterKeygenRequest proto.InternalMessageInfo
+
+func (m *QueryAllRegisterKeygenRequest) GetPagination() *query.PageRequest {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+type QueryAllRegisterKeygenResponse struct {
+	RegisterKeygen []RegisterKeygen    `protobuf:"bytes,1,rep,name=registerKeygen,proto3" json:"registerKeygen"`
+	Pagination     *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryAllRegisterKeygenResponse) Reset()         { *m = QueryAllRegisterKeygenResponse{} }
+func (m *QueryAllRegisterKeygenResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryAllRegisterKeygenResponse) ProtoMessage()    {}
+func (*QueryAllRegisterKeygenResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_c574d232f57cf2ee, []int{13}
+}
+func (m *QueryAllRegisterKeygenResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryAllRegisterKeygenResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryAllRegisterKeygenResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryAllRegisterKeygenResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryAllRegisterKeygenResponse.Merge(m, src)
+}
+func (m *QueryAllRegisterKeygenResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryAllRegisterKeygenResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryAllRegisterKeygenResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryAllRegisterKeygenResponse proto.InternalMessageInfo
+
+func (m *QueryAllRegisterKeygenResponse) GetRegisterKeygen() []RegisterKeygen {
+	if m != nil {
+		return m.RegisterKeygen
+	}
+	return nil
+}
+
+func (m *QueryAllRegisterKeygenResponse) GetPagination() *query.PageResponse {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
 func init() {
 	proto.RegisterType((*QueryParamsRequest)(nil), "bridge.bridge.QueryParamsRequest")
 	proto.RegisterType((*QueryParamsResponse)(nil), "bridge.bridge.QueryParamsResponse")
+	proto.RegisterType((*QueryGetKeygenBlockRequest)(nil), "bridge.bridge.QueryGetKeygenBlockRequest")
+	proto.RegisterType((*QueryGetKeygenBlockResponse)(nil), "bridge.bridge.QueryGetKeygenBlockResponse")
+	proto.RegisterType((*QueryAllKeygenBlockRequest)(nil), "bridge.bridge.QueryAllKeygenBlockRequest")
+	proto.RegisterType((*QueryAllKeygenBlockResponse)(nil), "bridge.bridge.QueryAllKeygenBlockResponse")
+	proto.RegisterType((*QueryGetNodeAccountRequest)(nil), "bridge.bridge.QueryGetNodeAccountRequest")
+	proto.RegisterType((*QueryGetNodeAccountResponse)(nil), "bridge.bridge.QueryGetNodeAccountResponse")
+	proto.RegisterType((*QueryAllNodeAccountRequest)(nil), "bridge.bridge.QueryAllNodeAccountRequest")
+	proto.RegisterType((*QueryAllNodeAccountResponse)(nil), "bridge.bridge.QueryAllNodeAccountResponse")
+	proto.RegisterType((*QueryGetRegisterKeygenRequest)(nil), "bridge.bridge.QueryGetRegisterKeygenRequest")
+	proto.RegisterType((*QueryGetRegisterKeygenResponse)(nil), "bridge.bridge.QueryGetRegisterKeygenResponse")
+	proto.RegisterType((*QueryAllRegisterKeygenRequest)(nil), "bridge.bridge.QueryAllRegisterKeygenRequest")
+	proto.RegisterType((*QueryAllRegisterKeygenResponse)(nil), "bridge.bridge.QueryAllRegisterKeygenResponse")
 }
 
 func init() { proto.RegisterFile("bridge/bridge/query.proto", fileDescriptor_c574d232f57cf2ee) }
 
 var fileDescriptor_c574d232f57cf2ee = []byte{
-	// 275 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x92, 0x4c, 0x2a, 0xca, 0x4c,
-	0x49, 0x4f, 0xd5, 0x87, 0x52, 0x85, 0xa5, 0xa9, 0x45, 0x95, 0x7a, 0x05, 0x45, 0xf9, 0x25, 0xf9,
-	0x42, 0xbc, 0x10, 0x31, 0x3d, 0x08, 0x25, 0x25, 0x92, 0x9e, 0x9f, 0x9e, 0x0f, 0x96, 0xd1, 0x07,
-	0xb1, 0x20, 0x8a, 0xa4, 0x64, 0xd2, 0xf3, 0xf3, 0xd3, 0x73, 0x52, 0xf5, 0x13, 0x0b, 0x32, 0xf5,
-	0x13, 0xf3, 0xf2, 0xf2, 0x4b, 0x12, 0x4b, 0x32, 0xf3, 0xf3, 0x8a, 0xa1, 0xb2, 0x5a, 0xc9, 0xf9,
-	0xc5, 0xb9, 0xf9, 0xc5, 0xfa, 0x49, 0x89, 0xc5, 0x50, 0xb3, 0xf5, 0xcb, 0x0c, 0x93, 0x52, 0x4b,
-	0x12, 0x0d, 0xf5, 0x0b, 0x12, 0xd3, 0x33, 0xf3, 0xc0, 0x8a, 0xa1, 0x6a, 0xa5, 0x50, 0x5d, 0x52,
-	0x90, 0x58, 0x94, 0x98, 0x0b, 0x35, 0x47, 0x49, 0x84, 0x4b, 0x28, 0x10, 0xa4, 0x3b, 0x00, 0x2c,
-	0x18, 0x94, 0x5a, 0x58, 0x9a, 0x5a, 0x5c, 0xa2, 0xe4, 0xc5, 0x25, 0x8c, 0x22, 0x5a, 0x5c, 0x90,
-	0x9f, 0x57, 0x9c, 0x2a, 0x64, 0xcc, 0xc5, 0x06, 0xd1, 0x2c, 0xc1, 0xa8, 0xc0, 0xa8, 0xc1, 0x6d,
-	0x24, 0xaa, 0x87, 0xe2, 0x11, 0x3d, 0x88, 0x72, 0x27, 0x96, 0x13, 0xf7, 0xe4, 0x19, 0x82, 0xa0,
-	0x4a, 0x8d, 0xca, 0xb9, 0x58, 0xc1, 0x66, 0x09, 0xe5, 0x71, 0xb1, 0x41, 0x14, 0x08, 0x29, 0xa2,
-	0xe9, 0xc3, 0x74, 0x81, 0x94, 0x12, 0x3e, 0x25, 0x10, 0xe7, 0x28, 0xc9, 0x36, 0x5d, 0x7e, 0x32,
-	0x99, 0x49, 0x5c, 0x48, 0x54, 0x1f, 0x9b, 0x07, 0x9d, 0xf4, 0x4f, 0x3c, 0x92, 0x63, 0xbc, 0xf0,
-	0x48, 0x8e, 0xf1, 0xc1, 0x23, 0x39, 0xc6, 0x09, 0x8f, 0xe5, 0x18, 0x2e, 0x3c, 0x96, 0x63, 0xb8,
-	0xf1, 0x58, 0x8e, 0x21, 0x4a, 0x14, 0xaa, 0xb0, 0x02, 0xa6, 0xa3, 0xa4, 0xb2, 0x20, 0xb5, 0x38,
-	0x89, 0x0d, 0x1c, 0x24, 0xc6, 0x80, 0x00, 0x00, 0x00, 0xff, 0xff, 0x9a, 0x4d, 0x0c, 0xc2, 0xba,
-	0x01, 0x00, 0x00,
+	// 729 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x96, 0x4f, 0x6f, 0xd3, 0x3e,
+	0x18, 0xc7, 0xeb, 0xee, 0xcf, 0x4f, 0x3f, 0x4f, 0x54, 0xc2, 0x6c, 0x02, 0x32, 0x1a, 0x8a, 0x27,
+	0xc6, 0x18, 0x23, 0xd6, 0x36, 0xf1, 0x02, 0xda, 0x03, 0x93, 0x98, 0x84, 0x46, 0x8f, 0x5c, 0xa6,
+	0xb4, 0xb1, 0xa2, 0x68, 0x59, 0xdc, 0x25, 0x19, 0xda, 0x34, 0x71, 0xe1, 0x8c, 0x10, 0x88, 0x0b,
+	0x17, 0xde, 0x00, 0x2f, 0x80, 0xd7, 0xb0, 0xe3, 0x24, 0x2e, 0x9c, 0x10, 0xda, 0x78, 0x0b, 0xdc,
+	0x51, 0xed, 0xa7, 0xd4, 0xee, 0x9c, 0xd0, 0xa1, 0x71, 0x4a, 0x6b, 0x3f, 0x7f, 0x3e, 0xdf, 0xe7,
+	0xb1, 0x9f, 0x04, 0xdf, 0xec, 0xa4, 0x51, 0x10, 0x72, 0x06, 0x8f, 0xbd, 0x7d, 0x9e, 0x1e, 0x7a,
+	0xbd, 0x54, 0xe4, 0x82, 0x5c, 0x51, 0x6b, 0x9e, 0x7a, 0x38, 0xb3, 0xa1, 0x08, 0x85, 0xdc, 0x61,
+	0xfd, 0x5f, 0xca, 0xc8, 0xb9, 0x15, 0x0a, 0x11, 0xc6, 0x9c, 0xf9, 0xbd, 0x88, 0xf9, 0x49, 0x22,
+	0x72, 0x3f, 0x8f, 0x44, 0x92, 0xc1, 0xee, 0x72, 0x57, 0x64, 0xbb, 0x22, 0x63, 0x1d, 0x3f, 0x83,
+	0xd8, 0xec, 0xc5, 0x6a, 0x87, 0xe7, 0xfe, 0x2a, 0xeb, 0xf9, 0x61, 0x94, 0x48, 0x63, 0xb0, 0x75,
+	0x4c, 0x92, 0x9e, 0x9f, 0xfa, 0xbb, 0x83, 0x38, 0x0d, 0x73, 0x6f, 0x87, 0x1f, 0x86, 0x3c, 0xd9,
+	0xee, 0xc4, 0xa2, 0xbb, 0x63, 0xb7, 0x48, 0x44, 0xc0, 0xb7, 0xfd, 0x6e, 0x57, 0xec, 0x27, 0x39,
+	0x58, 0x2c, 0x98, 0x16, 0x29, 0x0f, 0xa3, 0x2c, 0xe7, 0xe9, 0xb6, 0x0a, 0xa6, 0x8c, 0xe8, 0x2c,
+	0x26, 0xcf, 0xfa, 0x98, 0x5b, 0x32, 0x7b, 0x9b, 0xef, 0xed, 0xf3, 0x2c, 0xa7, 0x4f, 0xf0, 0x35,
+	0x63, 0x35, 0xeb, 0x89, 0x24, 0xe3, 0x64, 0x1d, 0x4f, 0x2b, 0xca, 0x1b, 0xa8, 0x81, 0x96, 0x66,
+	0xd6, 0xe6, 0x3c, 0xa3, 0x62, 0x9e, 0x32, 0x6f, 0x4d, 0x1e, 0x7f, 0xbb, 0x5d, 0x69, 0x83, 0x29,
+	0x5d, 0xc3, 0x8e, 0x8c, 0xb5, 0xc1, 0xf3, 0x4d, 0x99, 0xb9, 0xd5, 0x57, 0x01, 0x99, 0xc8, 0x2c,
+	0x9e, 0x8a, 0x92, 0x80, 0x1f, 0xc8, 0x88, 0xff, 0xb7, 0xd5, 0x1f, 0xea, 0xe3, 0x79, 0xab, 0x0f,
+	0x70, 0xb4, 0xf0, 0xcc, 0xce, 0x70, 0x19, 0x60, 0x9c, 0x11, 0x18, 0xcd, 0x11, 0x88, 0x74, 0x27,
+	0x1a, 0x00, 0x56, 0x33, 0x8e, 0x2d, 0x58, 0x8f, 0x31, 0x1e, 0xf6, 0x0b, 0x12, 0x2c, 0x7a, 0xaa,
+	0xb9, 0x5e, 0xbf, 0xb9, 0x9e, 0x3a, 0x38, 0xd0, 0x5c, 0x6f, 0xcb, 0x0f, 0x39, 0xf8, 0xb6, 0x35,
+	0x4f, 0xfa, 0x09, 0x81, 0x92, 0xd1, 0x34, 0x45, 0x4a, 0x26, 0x2e, 0xac, 0x84, 0x6c, 0x18, 0xac,
+	0x55, 0xc9, 0x7a, 0xef, 0x8f, 0xac, 0x0a, 0xc0, 0x80, 0x5d, 0x19, 0x76, 0xea, 0xa9, 0x08, 0x78,
+	0x53, 0x9d, 0xa6, 0x41, 0x49, 0x6a, 0xb8, 0x1a, 0x05, 0xb2, 0x14, 0x93, 0xed, 0x6a, 0x14, 0xe8,
+	0x3d, 0x32, 0xac, 0x87, 0xca, 0xb4, 0xe5, 0x82, 0x1e, 0x69, 0x16, 0x03, 0x65, 0xda, 0x92, 0xde,
+	0x23, 0x0b, 0xd0, 0xbf, 0xe8, 0xd1, 0x58, 0x4a, 0x26, 0x2e, 0xac, 0xe4, 0xf2, 0x7a, 0xf4, 0x08,
+	0xd7, 0x07, 0x55, 0x6f, 0xc3, 0x85, 0x56, 0xc7, 0xa3, 0xfc, 0x42, 0xed, 0x62, 0xb7, 0xc8, 0x0d,
+	0x54, 0x6e, 0xe2, 0x5a, 0x6a, 0xec, 0x40, 0x45, 0xeb, 0x23, 0x42, 0x4d, 0x77, 0xd0, 0x3a, 0xe2,
+	0x4a, 0x43, 0xa0, 0x6c, 0xc6, 0xb1, 0x9d, 0xf2, 0xb2, 0x7a, 0xf7, 0x19, 0x81, 0x30, 0x4b, 0xa6,
+	0x12, 0x61, 0x13, 0x7f, 0x29, 0xec, 0xd2, 0xfa, 0xb8, 0xf6, 0xf3, 0x3f, 0x3c, 0x25, 0xc1, 0x49,
+	0x82, 0xa7, 0xd5, 0xdc, 0x24, 0x77, 0x46, 0x88, 0xce, 0x0f, 0x66, 0x87, 0x96, 0x99, 0xa8, 0x34,
+	0xb4, 0xfe, 0xea, 0xcb, 0x8f, 0xf7, 0xd5, 0xeb, 0x64, 0x8e, 0xd9, 0x5e, 0x30, 0xe4, 0x1d, 0xc2,
+	0x33, 0xda, 0x44, 0x21, 0xf7, 0x6d, 0x21, 0xad, 0xc3, 0xda, 0x59, 0x1e, 0xc7, 0x14, 0x28, 0x1e,
+	0x48, 0x8a, 0xbb, 0x64, 0x81, 0x15, 0xbf, 0xca, 0xd8, 0x91, 0x3c, 0x9d, 0x2f, 0xc9, 0x6b, 0x84,
+	0x6b, 0x5a, 0x90, 0x66, 0x1c, 0xdb, 0xb1, 0xac, 0xc3, 0xda, 0x8e, 0x65, 0x1f, 0xb8, 0x74, 0x41,
+	0x62, 0xd5, 0xc9, 0x7c, 0x09, 0x16, 0x79, 0x83, 0x8c, 0x2b, 0x5f, 0x58, 0xa2, 0xf3, 0x43, 0xa9,
+	0xb0, 0x44, 0x96, 0xc1, 0x42, 0x97, 0x24, 0x0b, 0x25, 0x0d, 0x56, 0xfc, 0x2e, 0x67, 0x47, 0x51,
+	0xa0, 0xea, 0xa3, 0x45, 0x28, 0xab, 0xcf, 0xb8, 0x4c, 0xf6, 0x61, 0x57, 0x58, 0x1f, 0x9d, 0x89,
+	0x7c, 0x44, 0xb8, 0x66, 0x5e, 0x17, 0xb2, 0x52, 0xa0, 0xdb, 0x7a, 0xfd, 0x9d, 0x87, 0x63, 0x5a,
+	0x03, 0x94, 0x27, 0xa1, 0x96, 0xc8, 0x22, 0x2b, 0xfd, 0xa4, 0xf9, 0x7d, 0x9c, 0x3e, 0x20, 0x7c,
+	0xd5, 0x0c, 0xd5, 0xaf, 0xd8, 0x4a, 0x41, 0x19, 0x2e, 0x80, 0x58, 0x38, 0x65, 0xe8, 0xa2, 0x44,
+	0x6c, 0x10, 0xb7, 0x1c, 0xb1, 0xc5, 0x8e, 0x4f, 0x5d, 0x74, 0x72, 0xea, 0xa2, 0xef, 0xa7, 0x2e,
+	0x7a, 0x7b, 0xe6, 0x56, 0x4e, 0xce, 0xdc, 0xca, 0xd7, 0x33, 0xb7, 0xf2, 0x7c, 0x0e, 0x3c, 0x0e,
+	0x06, 0xae, 0xf9, 0x61, 0x8f, 0x67, 0x9d, 0x69, 0xf9, 0x9d, 0xb6, 0xfe, 0x2b, 0x00, 0x00, 0xff,
+	0xff, 0xd2, 0x2b, 0x72, 0x69, 0xb8, 0x0a, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -156,6 +748,15 @@ const _ = grpc.SupportPackageIsVersion4
 type QueryClient interface {
 	// Parameters queries the parameters of the module.
 	Params(ctx context.Context, in *QueryParamsRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error)
+	// Queries a list of KeygenBlock items.
+	KeygenBlock(ctx context.Context, in *QueryGetKeygenBlockRequest, opts ...grpc.CallOption) (*QueryGetKeygenBlockResponse, error)
+	KeygenBlockAll(ctx context.Context, in *QueryAllKeygenBlockRequest, opts ...grpc.CallOption) (*QueryAllKeygenBlockResponse, error)
+	// Queries a list of NodeAccount items.
+	NodeAccount(ctx context.Context, in *QueryGetNodeAccountRequest, opts ...grpc.CallOption) (*QueryGetNodeAccountResponse, error)
+	NodeAccountAll(ctx context.Context, in *QueryAllNodeAccountRequest, opts ...grpc.CallOption) (*QueryAllNodeAccountResponse, error)
+	// Queries a list of RegisterKeygen items.
+	RegisterKeygen(ctx context.Context, in *QueryGetRegisterKeygenRequest, opts ...grpc.CallOption) (*QueryGetRegisterKeygenResponse, error)
+	RegisterKeygenAll(ctx context.Context, in *QueryAllRegisterKeygenRequest, opts ...grpc.CallOption) (*QueryAllRegisterKeygenResponse, error)
 }
 
 type queryClient struct {
@@ -175,10 +776,73 @@ func (c *queryClient) Params(ctx context.Context, in *QueryParamsRequest, opts .
 	return out, nil
 }
 
+func (c *queryClient) KeygenBlock(ctx context.Context, in *QueryGetKeygenBlockRequest, opts ...grpc.CallOption) (*QueryGetKeygenBlockResponse, error) {
+	out := new(QueryGetKeygenBlockResponse)
+	err := c.cc.Invoke(ctx, "/bridge.bridge.Query/KeygenBlock", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) KeygenBlockAll(ctx context.Context, in *QueryAllKeygenBlockRequest, opts ...grpc.CallOption) (*QueryAllKeygenBlockResponse, error) {
+	out := new(QueryAllKeygenBlockResponse)
+	err := c.cc.Invoke(ctx, "/bridge.bridge.Query/KeygenBlockAll", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) NodeAccount(ctx context.Context, in *QueryGetNodeAccountRequest, opts ...grpc.CallOption) (*QueryGetNodeAccountResponse, error) {
+	out := new(QueryGetNodeAccountResponse)
+	err := c.cc.Invoke(ctx, "/bridge.bridge.Query/NodeAccount", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) NodeAccountAll(ctx context.Context, in *QueryAllNodeAccountRequest, opts ...grpc.CallOption) (*QueryAllNodeAccountResponse, error) {
+	out := new(QueryAllNodeAccountResponse)
+	err := c.cc.Invoke(ctx, "/bridge.bridge.Query/NodeAccountAll", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) RegisterKeygen(ctx context.Context, in *QueryGetRegisterKeygenRequest, opts ...grpc.CallOption) (*QueryGetRegisterKeygenResponse, error) {
+	out := new(QueryGetRegisterKeygenResponse)
+	err := c.cc.Invoke(ctx, "/bridge.bridge.Query/RegisterKeygen", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) RegisterKeygenAll(ctx context.Context, in *QueryAllRegisterKeygenRequest, opts ...grpc.CallOption) (*QueryAllRegisterKeygenResponse, error) {
+	out := new(QueryAllRegisterKeygenResponse)
+	err := c.cc.Invoke(ctx, "/bridge.bridge.Query/RegisterKeygenAll", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 type QueryServer interface {
 	// Parameters queries the parameters of the module.
 	Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error)
+	// Queries a list of KeygenBlock items.
+	KeygenBlock(context.Context, *QueryGetKeygenBlockRequest) (*QueryGetKeygenBlockResponse, error)
+	KeygenBlockAll(context.Context, *QueryAllKeygenBlockRequest) (*QueryAllKeygenBlockResponse, error)
+	// Queries a list of NodeAccount items.
+	NodeAccount(context.Context, *QueryGetNodeAccountRequest) (*QueryGetNodeAccountResponse, error)
+	NodeAccountAll(context.Context, *QueryAllNodeAccountRequest) (*QueryAllNodeAccountResponse, error)
+	// Queries a list of RegisterKeygen items.
+	RegisterKeygen(context.Context, *QueryGetRegisterKeygenRequest) (*QueryGetRegisterKeygenResponse, error)
+	RegisterKeygenAll(context.Context, *QueryAllRegisterKeygenRequest) (*QueryAllRegisterKeygenResponse, error)
 }
 
 // UnimplementedQueryServer can be embedded to have forward compatible implementations.
@@ -187,6 +851,24 @@ type UnimplementedQueryServer struct {
 
 func (*UnimplementedQueryServer) Params(ctx context.Context, req *QueryParamsRequest) (*QueryParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Params not implemented")
+}
+func (*UnimplementedQueryServer) KeygenBlock(ctx context.Context, req *QueryGetKeygenBlockRequest) (*QueryGetKeygenBlockResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method KeygenBlock not implemented")
+}
+func (*UnimplementedQueryServer) KeygenBlockAll(ctx context.Context, req *QueryAllKeygenBlockRequest) (*QueryAllKeygenBlockResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method KeygenBlockAll not implemented")
+}
+func (*UnimplementedQueryServer) NodeAccount(ctx context.Context, req *QueryGetNodeAccountRequest) (*QueryGetNodeAccountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method NodeAccount not implemented")
+}
+func (*UnimplementedQueryServer) NodeAccountAll(ctx context.Context, req *QueryAllNodeAccountRequest) (*QueryAllNodeAccountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method NodeAccountAll not implemented")
+}
+func (*UnimplementedQueryServer) RegisterKeygen(ctx context.Context, req *QueryGetRegisterKeygenRequest) (*QueryGetRegisterKeygenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RegisterKeygen not implemented")
+}
+func (*UnimplementedQueryServer) RegisterKeygenAll(ctx context.Context, req *QueryAllRegisterKeygenRequest) (*QueryAllRegisterKeygenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RegisterKeygenAll not implemented")
 }
 
 func RegisterQueryServer(s grpc1.Server, srv QueryServer) {
@@ -211,6 +893,114 @@ func _Query_Params_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_KeygenBlock_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetKeygenBlockRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).KeygenBlock(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/bridge.bridge.Query/KeygenBlock",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).KeygenBlock(ctx, req.(*QueryGetKeygenBlockRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_KeygenBlockAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryAllKeygenBlockRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).KeygenBlockAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/bridge.bridge.Query/KeygenBlockAll",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).KeygenBlockAll(ctx, req.(*QueryAllKeygenBlockRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_NodeAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetNodeAccountRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).NodeAccount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/bridge.bridge.Query/NodeAccount",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).NodeAccount(ctx, req.(*QueryGetNodeAccountRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_NodeAccountAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryAllNodeAccountRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).NodeAccountAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/bridge.bridge.Query/NodeAccountAll",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).NodeAccountAll(ctx, req.(*QueryAllNodeAccountRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_RegisterKeygen_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetRegisterKeygenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).RegisterKeygen(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/bridge.bridge.Query/RegisterKeygen",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).RegisterKeygen(ctx, req.(*QueryGetRegisterKeygenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_RegisterKeygenAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryAllRegisterKeygenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).RegisterKeygenAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/bridge.bridge.Query/RegisterKeygenAll",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).RegisterKeygenAll(ctx, req.(*QueryAllRegisterKeygenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Query_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "bridge.bridge.Query",
 	HandlerType: (*QueryServer)(nil),
@@ -218,6 +1008,30 @@ var _Query_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Params",
 			Handler:    _Query_Params_Handler,
+		},
+		{
+			MethodName: "KeygenBlock",
+			Handler:    _Query_KeygenBlock_Handler,
+		},
+		{
+			MethodName: "KeygenBlockAll",
+			Handler:    _Query_KeygenBlockAll_Handler,
+		},
+		{
+			MethodName: "NodeAccount",
+			Handler:    _Query_NodeAccount_Handler,
+		},
+		{
+			MethodName: "NodeAccountAll",
+			Handler:    _Query_NodeAccountAll_Handler,
+		},
+		{
+			MethodName: "RegisterKeygen",
+			Handler:    _Query_RegisterKeygen_Handler,
+		},
+		{
+			MethodName: "RegisterKeygenAll",
+			Handler:    _Query_RegisterKeygenAll_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -280,6 +1094,445 @@ func (m *QueryParamsResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
+func (m *QueryGetKeygenBlockRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetKeygenBlockRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetKeygenBlockRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Index) > 0 {
+		i -= len(m.Index)
+		copy(dAtA[i:], m.Index)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.Index)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetKeygenBlockResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetKeygenBlockResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetKeygenBlockResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	{
+		size, err := m.KeygenBlock.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintQuery(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryAllKeygenBlockRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryAllKeygenBlockRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryAllKeygenBlockRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryAllKeygenBlockResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryAllKeygenBlockResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryAllKeygenBlockResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.KeygenBlock) > 0 {
+		for iNdEx := len(m.KeygenBlock) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.KeygenBlock[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintQuery(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetNodeAccountRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetNodeAccountRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetNodeAccountRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Id != 0 {
+		i = encodeVarintQuery(dAtA, i, uint64(m.Id))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetNodeAccountResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetNodeAccountResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetNodeAccountResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	{
+		size, err := m.NodeAccount.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintQuery(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryAllNodeAccountRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryAllNodeAccountRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryAllNodeAccountRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryAllNodeAccountResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryAllNodeAccountResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryAllNodeAccountResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.NodeAccount) > 0 {
+		for iNdEx := len(m.NodeAccount) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.NodeAccount[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintQuery(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetRegisterKeygenRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetRegisterKeygenRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetRegisterKeygenRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Index) > 0 {
+		i -= len(m.Index)
+		copy(dAtA[i:], m.Index)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.Index)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetRegisterKeygenResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetRegisterKeygenResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetRegisterKeygenResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	{
+		size, err := m.RegisterKeygen.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintQuery(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryAllRegisterKeygenRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryAllRegisterKeygenRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryAllRegisterKeygenRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryAllRegisterKeygenResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryAllRegisterKeygenResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryAllRegisterKeygenResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.RegisterKeygen) > 0 {
+		for iNdEx := len(m.RegisterKeygen) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.RegisterKeygen[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintQuery(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintQuery(dAtA []byte, offset int, v uint64) int {
 	offset -= sovQuery(v)
 	base := offset
@@ -308,6 +1561,173 @@ func (m *QueryParamsResponse) Size() (n int) {
 	_ = l
 	l = m.Params.Size()
 	n += 1 + l + sovQuery(uint64(l))
+	return n
+}
+
+func (m *QueryGetKeygenBlockRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Index)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetKeygenBlockResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = m.KeygenBlock.Size()
+	n += 1 + l + sovQuery(uint64(l))
+	return n
+}
+
+func (m *QueryAllKeygenBlockRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryAllKeygenBlockResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.KeygenBlock) > 0 {
+		for _, e := range m.KeygenBlock {
+			l = e.Size()
+			n += 1 + l + sovQuery(uint64(l))
+		}
+	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetNodeAccountRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Id != 0 {
+		n += 1 + sovQuery(uint64(m.Id))
+	}
+	return n
+}
+
+func (m *QueryGetNodeAccountResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = m.NodeAccount.Size()
+	n += 1 + l + sovQuery(uint64(l))
+	return n
+}
+
+func (m *QueryAllNodeAccountRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryAllNodeAccountResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.NodeAccount) > 0 {
+		for _, e := range m.NodeAccount {
+			l = e.Size()
+			n += 1 + l + sovQuery(uint64(l))
+		}
+	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetRegisterKeygenRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Index)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetRegisterKeygenResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = m.RegisterKeygen.Size()
+	n += 1 + l + sovQuery(uint64(l))
+	return n
+}
+
+func (m *QueryAllRegisterKeygenRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryAllRegisterKeygenResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.RegisterKeygen) > 0 {
+		for _, e := range m.RegisterKeygen {
+			l = e.Size()
+			n += 1 + l + sovQuery(uint64(l))
+		}
+	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
 	return n
 }
 
@@ -426,6 +1846,1106 @@ func (m *QueryParamsResponse) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			if err := m.Params.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetKeygenBlockRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetKeygenBlockRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetKeygenBlockRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Index", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Index = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetKeygenBlockResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetKeygenBlockResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetKeygenBlockResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field KeygenBlock", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.KeygenBlock.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryAllKeygenBlockRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryAllKeygenBlockRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryAllKeygenBlockRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageRequest{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryAllKeygenBlockResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryAllKeygenBlockResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryAllKeygenBlockResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field KeygenBlock", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.KeygenBlock = append(m.KeygenBlock, KeygenBlock{})
+			if err := m.KeygenBlock[len(m.KeygenBlock)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageResponse{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetNodeAccountRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetNodeAccountRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetNodeAccountRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+			}
+			m.Id = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Id |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetNodeAccountResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetNodeAccountResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetNodeAccountResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field NodeAccount", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.NodeAccount.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryAllNodeAccountRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryAllNodeAccountRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryAllNodeAccountRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageRequest{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryAllNodeAccountResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryAllNodeAccountResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryAllNodeAccountResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field NodeAccount", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.NodeAccount = append(m.NodeAccount, NodeAccount{})
+			if err := m.NodeAccount[len(m.NodeAccount)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageResponse{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetRegisterKeygenRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetRegisterKeygenRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetRegisterKeygenRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Index", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Index = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetRegisterKeygenResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetRegisterKeygenResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetRegisterKeygenResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field RegisterKeygen", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.RegisterKeygen.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryAllRegisterKeygenRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryAllRegisterKeygenRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryAllRegisterKeygenRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageRequest{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryAllRegisterKeygenResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryAllRegisterKeygenResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryAllRegisterKeygenResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field RegisterKeygen", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.RegisterKeygen = append(m.RegisterKeygen, RegisterKeygen{})
+			if err := m.RegisterKeygen[len(m.RegisterKeygen)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageResponse{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex

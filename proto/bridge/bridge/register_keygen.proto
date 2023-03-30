@@ -1,0 +1,12 @@
+syntax = "proto3";
+package bridge.bridge;
+
+option go_package = "bridge/x/bridge/types";
+
+message RegisterKeygen {
+  string index = 1;
+  int64 height = 2;
+  string pool_pub_key = 3;
+  repeated string members = 4;
+}
+

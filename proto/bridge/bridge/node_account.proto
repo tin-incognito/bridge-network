@@ -1,0 +1,16 @@
+syntax = "proto3";
+package bridge.bridge;
+
+option go_package = "bridge/x/bridge/types";
+
+import "bridge/bridge/pub_key_set.proto";
+
+message NodeAccount {
+  uint64 id = 1;
+  string node_address = 2;
+  string ip_address = 3;
+  int32 status = 4;
+  PubKeySet pub_key_set = 5;
+  string validator_cons_pub_key = 6;
+  repeated string signer_membership = 7;
+}

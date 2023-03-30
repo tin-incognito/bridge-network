@@ -25,7 +25,11 @@ const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
 // GenesisState defines the bridge module's genesis state.
 type GenesisState struct {
-	Params Params `protobuf:"bytes,1,opt,name=params,proto3" json:"params"`
+	Params             Params           `protobuf:"bytes,1,opt,name=params,proto3" json:"params"`
+	KeygenBlockList    []KeygenBlock    `protobuf:"bytes,2,rep,name=keygenBlockList,proto3" json:"keygenBlockList"`
+	NodeAccountList    []NodeAccount    `protobuf:"bytes,3,rep,name=nodeAccountList,proto3" json:"nodeAccountList"`
+	NodeAccountCount   uint64           `protobuf:"varint,4,opt,name=nodeAccountCount,proto3" json:"nodeAccountCount,omitempty"`
+	RegisterKeygenList []RegisterKeygen `protobuf:"bytes,5,rep,name=registerKeygenList,proto3" json:"registerKeygenList"`
 }
 
 func (m *GenesisState) Reset()         { *m = GenesisState{} }
@@ -68,6 +72,34 @@ func (m *GenesisState) GetParams() Params {
 	return Params{}
 }
 
+func (m *GenesisState) GetKeygenBlockList() []KeygenBlock {
+	if m != nil {
+		return m.KeygenBlockList
+	}
+	return nil
+}
+
+func (m *GenesisState) GetNodeAccountList() []NodeAccount {
+	if m != nil {
+		return m.NodeAccountList
+	}
+	return nil
+}
+
+func (m *GenesisState) GetNodeAccountCount() uint64 {
+	if m != nil {
+		return m.NodeAccountCount
+	}
+	return 0
+}
+
+func (m *GenesisState) GetRegisterKeygenList() []RegisterKeygen {
+	if m != nil {
+		return m.RegisterKeygenList
+	}
+	return nil
+}
+
 func init() {
 	proto.RegisterType((*GenesisState)(nil), "bridge.bridge.GenesisState")
 }
@@ -75,18 +107,27 @@ func init() {
 func init() { proto.RegisterFile("bridge/bridge/genesis.proto", fileDescriptor_52d870788ff0d39b) }
 
 var fileDescriptor_52d870788ff0d39b = []byte{
-	// 165 bytes of a gzipped FileDescriptorProto
+	// 310 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x92, 0x4e, 0x2a, 0xca, 0x4c,
 	0x49, 0x4f, 0xd5, 0x87, 0x52, 0xe9, 0xa9, 0x79, 0xa9, 0xc5, 0x99, 0xc5, 0x7a, 0x05, 0x45, 0xf9,
 	0x25, 0xf9, 0x42, 0xbc, 0x10, 0x51, 0x3d, 0x08, 0x25, 0x25, 0x92, 0x9e, 0x9f, 0x9e, 0x0f, 0x96,
 	0xd1, 0x07, 0xb1, 0x20, 0x8a, 0xa4, 0xa4, 0x50, 0x4d, 0x28, 0x48, 0x2c, 0x4a, 0xcc, 0x85, 0x1a,
-	0xa0, 0xe4, 0xcc, 0xc5, 0xe3, 0x0e, 0x31, 0x31, 0xb8, 0x24, 0xb1, 0x24, 0x55, 0xc8, 0x98, 0x8b,
-	0x0d, 0x22, 0x2f, 0xc1, 0xa8, 0xc0, 0xa8, 0xc1, 0x6d, 0x24, 0xaa, 0x87, 0x62, 0x83, 0x5e, 0x00,
-	0x58, 0xd2, 0x89, 0xe5, 0xc4, 0x3d, 0x79, 0x86, 0x20, 0xa8, 0x52, 0x27, 0xfd, 0x13, 0x8f, 0xe4,
-	0x18, 0x2f, 0x3c, 0x92, 0x63, 0x7c, 0xf0, 0x48, 0x8e, 0x71, 0xc2, 0x63, 0x39, 0x86, 0x0b, 0x8f,
-	0xe5, 0x18, 0x6e, 0x3c, 0x96, 0x63, 0x88, 0x12, 0x85, 0xda, 0x59, 0x01, 0xb3, 0xbc, 0xa4, 0xb2,
-	0x20, 0xb5, 0x38, 0x89, 0x0d, 0x6c, 0xb9, 0x31, 0x20, 0x00, 0x00, 0xff, 0xff, 0x28, 0x63, 0xa5,
-	0x52, 0xdc, 0x00, 0x00, 0x00,
+	0x20, 0xa5, 0x80, 0x2a, 0x97, 0x9d, 0x5a, 0x99, 0x9e, 0x9a, 0x17, 0x9f, 0x94, 0x93, 0x9f, 0x9c,
+	0x8d, 0x5d, 0x45, 0x5e, 0x7e, 0x4a, 0x6a, 0x7c, 0x62, 0x72, 0x72, 0x7e, 0x69, 0x5e, 0x09, 0x54,
+	0x85, 0x32, 0xaa, 0x8a, 0xa2, 0xd4, 0xf4, 0xcc, 0xe2, 0x92, 0xd4, 0xa2, 0x78, 0x88, 0x61, 0x10,
+	0x45, 0x4a, 0x77, 0x98, 0xb8, 0x78, 0xdc, 0x21, 0x6e, 0x0f, 0x2e, 0x49, 0x2c, 0x49, 0x15, 0x32,
+	0xe6, 0x62, 0x83, 0xb8, 0x44, 0x82, 0x51, 0x81, 0x51, 0x83, 0xdb, 0x48, 0x54, 0x0f, 0xc5, 0x2f,
+	0x7a, 0x01, 0x60, 0x49, 0x27, 0x96, 0x13, 0xf7, 0xe4, 0x19, 0x82, 0xa0, 0x4a, 0x85, 0xbc, 0xb8,
+	0xf8, 0x21, 0xa6, 0x3a, 0x81, 0x5c, 0xe8, 0x93, 0x59, 0x5c, 0x22, 0xc1, 0xa4, 0xc0, 0xac, 0xc1,
+	0x6d, 0x24, 0x85, 0xa6, 0xdb, 0x1b, 0xa1, 0x0a, 0x6a, 0x04, 0xba, 0x46, 0x90, 0x59, 0x20, 0xcf,
+	0x38, 0x42, 0xfc, 0x02, 0x36, 0x8b, 0x19, 0xab, 0x59, 0x7e, 0x08, 0x55, 0x30, 0xb3, 0xd0, 0x34,
+	0x0a, 0x69, 0x71, 0x09, 0x20, 0x09, 0x39, 0x83, 0x08, 0x09, 0x16, 0x05, 0x46, 0x0d, 0x96, 0x20,
+	0x0c, 0x71, 0xa1, 0x60, 0x2e, 0x21, 0x58, 0x10, 0x41, 0x5c, 0x09, 0xb6, 0x9a, 0x15, 0x6c, 0xb5,
+	0x2c, 0x9a, 0xd5, 0x41, 0x28, 0x0a, 0xa1, 0xb6, 0x63, 0xd1, 0xee, 0xa4, 0x7f, 0xe2, 0x91, 0x1c,
+	0xe3, 0x85, 0x47, 0x72, 0x8c, 0x0f, 0x1e, 0xc9, 0x31, 0x4e, 0x78, 0x2c, 0xc7, 0x70, 0xe1, 0xb1,
+	0x1c, 0xc3, 0x8d, 0xc7, 0x72, 0x0c, 0x51, 0xa2, 0xd0, 0x68, 0xa9, 0x80, 0xc5, 0x4f, 0x49, 0x65,
+	0x41, 0x6a, 0x71, 0x12, 0x1b, 0x38, 0x5a, 0x8c, 0x01, 0x01, 0x00, 0x00, 0xff, 0xff, 0xac, 0x82,
+	0xdb, 0x61, 0x5f, 0x02, 0x00, 0x00,
 }
 
 func (m *GenesisState) Marshal() (dAtA []byte, err error) {
@@ -109,6 +150,53 @@ func (m *GenesisState) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if len(m.RegisterKeygenList) > 0 {
+		for iNdEx := len(m.RegisterKeygenList) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.RegisterKeygenList[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintGenesis(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0x2a
+		}
+	}
+	if m.NodeAccountCount != 0 {
+		i = encodeVarintGenesis(dAtA, i, uint64(m.NodeAccountCount))
+		i--
+		dAtA[i] = 0x20
+	}
+	if len(m.NodeAccountList) > 0 {
+		for iNdEx := len(m.NodeAccountList) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.NodeAccountList[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintGenesis(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0x1a
+		}
+	}
+	if len(m.KeygenBlockList) > 0 {
+		for iNdEx := len(m.KeygenBlockList) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.KeygenBlockList[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintGenesis(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0x12
+		}
+	}
 	{
 		size, err := m.Params.MarshalToSizedBuffer(dAtA[:i])
 		if err != nil {
@@ -141,6 +229,27 @@ func (m *GenesisState) Size() (n int) {
 	_ = l
 	l = m.Params.Size()
 	n += 1 + l + sovGenesis(uint64(l))
+	if len(m.KeygenBlockList) > 0 {
+		for _, e := range m.KeygenBlockList {
+			l = e.Size()
+			n += 1 + l + sovGenesis(uint64(l))
+		}
+	}
+	if len(m.NodeAccountList) > 0 {
+		for _, e := range m.NodeAccountList {
+			l = e.Size()
+			n += 1 + l + sovGenesis(uint64(l))
+		}
+	}
+	if m.NodeAccountCount != 0 {
+		n += 1 + sovGenesis(uint64(m.NodeAccountCount))
+	}
+	if len(m.RegisterKeygenList) > 0 {
+		for _, e := range m.RegisterKeygenList {
+			l = e.Size()
+			n += 1 + l + sovGenesis(uint64(l))
+		}
+	}
 	return n
 }
 
@@ -209,6 +318,127 @@ func (m *GenesisState) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			if err := m.Params.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field KeygenBlockList", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowGenesis
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthGenesis
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthGenesis
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.KeygenBlockList = append(m.KeygenBlockList, KeygenBlock{})
+			if err := m.KeygenBlockList[len(m.KeygenBlockList)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field NodeAccountList", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowGenesis
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthGenesis
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthGenesis
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.NodeAccountList = append(m.NodeAccountList, NodeAccount{})
+			if err := m.NodeAccountList[len(m.NodeAccountList)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 4:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field NodeAccountCount", wireType)
+			}
+			m.NodeAccountCount = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowGenesis
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.NodeAccountCount |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field RegisterKeygenList", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowGenesis
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthGenesis
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthGenesis
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.RegisterKeygenList = append(m.RegisterKeygenList, RegisterKeygen{})
+			if err := m.RegisterKeygenList[len(m.RegisterKeygenList)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex

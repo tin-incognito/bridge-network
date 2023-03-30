@@ -19,12 +19,91 @@ func TestGenesisState_Validate(t *testing.T) {
 			valid:    true,
 		},
 		{
-			desc:     "valid genesis state",
+			desc: "valid genesis state",
 			genState: &types.GenesisState{
 
+				KeygenBlockList: []types.KeygenBlock{
+					{
+						Index: "0",
+					},
+					{
+						Index: "1",
+					},
+				},
+				NodeAccountList: []types.NodeAccount{
+					{
+						Id: 0,
+					},
+					{
+						Id: 1,
+					},
+				},
+				NodeAccountCount: 2,
+				RegisterKeygenList: []types.RegisterKeygen{
+					{
+						Index: "0",
+					},
+					{
+						Index: "1",
+					},
+				},
 				// this line is used by starport scaffolding # types/genesis/validField
 			},
 			valid: true,
+		},
+		{
+			desc: "duplicated keygenBlock",
+			genState: &types.GenesisState{
+				KeygenBlockList: []types.KeygenBlock{
+					{
+						Index: "0",
+					},
+					{
+						Index: "0",
+					},
+				},
+			},
+			valid: false,
+		},
+		{
+			desc: "duplicated nodeAccount",
+			genState: &types.GenesisState{
+				NodeAccountList: []types.NodeAccount{
+					{
+						Id: 0,
+					},
+					{
+						Id: 0,
+					},
+				},
+			},
+			valid: false,
+		},
+		{
+			desc: "invalid nodeAccount count",
+			genState: &types.GenesisState{
+				NodeAccountList: []types.NodeAccount{
+					{
+						Id: 1,
+					},
+				},
+				NodeAccountCount: 0,
+			},
+			valid: false,
+		},
+		{
+			desc: "duplicated registerKeygen",
+			genState: &types.GenesisState{
+				RegisterKeygenList: []types.RegisterKeygen{
+					{
+						Index: "0",
+					},
+					{
+						Index: "0",
+					},
+				},
+			},
+			valid: false,
 		},
 		// this line is used by starport scaffolding # types/genesis/testcase
 	} {

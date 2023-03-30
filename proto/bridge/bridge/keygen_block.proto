@@ -1,0 +1,12 @@
+syntax = "proto3";
+package bridge.bridge;
+
+option go_package = "bridge/x/bridge/types";
+
+import "bridge/bridge/keygen_value.proto";
+
+message KeygenBlock {
+  string index = 1;
+  int64 height = 2;
+  repeated KeygenValue keygens = 3;
+}

@@ -1,0 +1,9 @@
+syntax = "proto3";
+package bridge.bridge;
+
+option go_package = "bridge/x/bridge/types";
+
+message PubKeySet {
+  string secp256k1 = 1;
+  string ed25519 = 2;
+}

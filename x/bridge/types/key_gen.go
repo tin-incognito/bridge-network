@@ -10,33 +10,25 @@ import (
 	"strings"
 )
 
-type KeygenType int
-
-type Keygen struct {
-	Id      string
-	Members []string
-	Type    KeygenType
-}
-
 // NewKeygen create a new instance of Keygen
-func NewKeygen(height int64, members []string, keygenType KeygenType) (Keygen, error) {
+func NewKeygen(height int64, members []string, keygenType int) (*KeygenValue, error) {
 	// sort the members
 	sort.SliceStable(members, func(i, j int) bool {
 		return members[i] < members[j]
 	})
 	id, err := getKeygenID(height, members, keygenType)
 	if err != nil {
-		return Keygen{}, fmt.Errorf("fail to create new keygen: %w", err)
+		return nil, fmt.Errorf("fail to create new keygen: %w", err)
 	}
-	return Keygen{
+	return &KeygenValue{
 		Id:      string(id),
 		Members: members,
-		Type:    keygenType,
+		Type:    int32(keygenType),
 	}, nil
 }
 
 // getKeygenID will create ID based on the pub keys
-func getKeygenID(height int64, members []string, keygenType KeygenType) (common.TxID, error) {
+func getKeygenID(height int64, members []string, keygenType int) (common.TxID, error) {
 	sb := strings.Builder{}
 	sb.WriteString(strconv.FormatInt(height, 10))
 	sb.WriteString(strconv.Itoa(int(keygenType)))

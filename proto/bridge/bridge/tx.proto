@@ -4,9 +4,14 @@ package bridge.bridge;
 
 option go_package = "bridge/x/bridge/types";
 
+import "bridge/bridge/blame.proto";
+
 // Msg defines the Msg service.
 service Msg {
-  rpc Keygen (MsgKeygen) returns (MsgKeygenResponse);
+  rpc Keygen          (MsgKeygen         ) returns (MsgKeygenResponse         );
+  rpc TssPool         (MsgTssPool        ) returns (MsgTssPoolResponse        );
+  rpc TssKeySign      (MsgTssKeySign     ) returns (MsgTssKeySignResponse     );
+  rpc RegisterTssPool (MsgRegisterTssPool) returns (MsgRegisterTssPoolResponse);
 }
 message MsgKeygen {
   string creator = 1;
@@ -15,4 +20,33 @@ message MsgKeygen {
 }
 
 message MsgKeygenResponse {}
+
+message MsgTssPool {
+           string creator      =  1;
+           string id           =  2;
+           string pool_pub_key =  3;
+           int32  keygen_type  =  4;
+  repeated string pub_keys     =  5;
+           int64  height       =  6;
+           Blame  blame        =  7;
+  repeated string chains       =  8;
+           bytes  signer       =  9;
+           int64  keygen_time  = 10;
+}
+
+message MsgTssPoolResponse {}
+
+message MsgTssKeySign {
+  string creator = 1;
+}
+
+message MsgTssKeySignResponse {}
+
+message MsgRegisterTssPool {
+  string creator = 1;
+  string msg = 2;
+  string signature = 3;
+}
+
+message MsgRegisterTssPoolResponse {}
 

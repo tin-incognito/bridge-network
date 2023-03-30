@@ -5,11 +5,6 @@ import (
 	"fmt"
 )
 
-type PubKeySet struct {
-	Secp256k1 string
-	Ed25519   string
-}
-
 // PubKey used in bridgechain, it should be bech32 encoded string
 // thus it will be something like
 // bridgepub1addwnpepqt7qug8vk9r3saw8n4r803ydj2g3dqwx0mvq5akhnze86fc536xcycgtrnv
@@ -20,7 +15,6 @@ type (
 )
 
 var EmptyPubKey PubKey
-var EmptyPubKeySet PubKeySet
 
 // NewPubKey create a new instance of PubKey
 // key is bech32 encoded string
