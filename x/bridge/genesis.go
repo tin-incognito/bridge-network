@@ -3,6 +3,7 @@ package bridge
 import (
 	"bridge/x/bridge/keeper"
 	"bridge/x/bridge/types"
+	"fmt"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	abci "github.com/tendermint/tendermint/abci/types"
@@ -10,8 +11,10 @@ import (
 
 // InitGenesis initializes the module's state from a provided genesis state.
 func InitGenesis(ctx sdk.Context, k keeper.Keeper, genState types.GenesisState) []abci.ValidatorUpdate {
+	fmt.Printf("%+v\n", k.GetAllNodeAccount(ctx))
 	// Set all the keygenBlock
 	for _, elem := range genState.KeygenBlockList {
+		fmt.Printf("elem %v %+v\n", elem.Index, elem.String())
 		k.SetKeygenBlock(ctx, elem)
 	}
 
@@ -20,6 +23,7 @@ func InitGenesis(ctx sdk.Context, k keeper.Keeper, genState types.GenesisState) 
 
 	//validators := make([]abci.ValidatorUpdate, 0, len(genState.NodeAccountList))
 	for _, nodeAccount := range genState.NodeAccountList {
+		fmt.Printf("node %v %+v\n", nodeAccount.Id, nodeAccount.String())
 		/*pk, err := cosmos.GetPubKeyFromBech32(cosmos.Bech32PubKeyTypeConsPub, nodeAccount.ValidatorConsPubKey)*/
 		/*if err != nil {*/
 		/*ctx.Logger().Error("fail to parse consensus public key", "key", nodeAccount.ValidatorConsPubKey, "error", err)*/
